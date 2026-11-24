@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rabanada · proposta</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Figtree:wght@400;500;600;700&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<style>
+/* VOICE: proposta de produto, calorosa e direta, com números de mercado
+   IDEA: a vitrine da confeitaria: cada seção é uma bandeja de exemplos
+   PICTURE: foto real de vitrine de rabanadas no topo, galerias e vídeos em formato de celular
+   COLOUR and TYPE: cores da Doçaria (cacau, ouro, cereja); Young Serif, Figtree, Caveat em detalhe
+   LAYOUT: uma coluna, faixas de largura total alternando cacau e claro, rodapé DNA */
+:root{color-scheme:light;--cacau:#3B1E17;--ouro:#C9963F;--cereja:#8E2A26;--creme:#FBF5EC;--ink:#2A1610;--sub:#6B5248;--ln:#E8DCCB}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:#fff;color:var(--ink);font:16px/1.6 Figtree,system-ui,sans-serif;overflow-x:clip}
+.wrap{max-width:1120px;margin:0 auto;padding-inline:max(5vw,16px)}
+h1,h2,h3{font-family:"Young Serif",Georgia,serif;font-weight:400;line-height:1.08;text-wrap:balance;margin:0}
+h1{font-size:clamp(2.1rem,5.2vw,3.4rem)}
+h2{font-size:clamp(1.6rem,3.6vw,2.4rem)}
+h3{font-size:1.2rem}
+p{margin:0}
+.eyebrow{font-size:.88rem;font-weight:600;color:var(--cereja);margin-bottom:10px}
+.hand{font-family:Caveat,cursive;font-size:1.5em;color:var(--ouro);font-weight:600}
+.band{padding-block:clamp(40px,6vw,76px)}
+.cream{background:var(--creme)}
+.dark{background:var(--cacau);color:#F6EADB}
+.dark h2,.dark h3{color:#fff}.dark .eyebrow{color:var(--ouro)}
+.intro{max-width:66ch;color:var(--sub);margin-top:14px;font-size:1.05rem}
+.dark .intro{color:#E3D2BE}
+.top{background:var(--cacau);color:#F6EADB}
+.bar{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-block:16px;border-bottom:1px solid #5A362B;flex-wrap:wrap}
+.bar img{height:68px;width:auto;display:block}
+.bar span{font-size:.9rem;color:#D9C3AA}
+.hero{padding-block:clamp(30px,5vw,60px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(22px,4vw,52px);align-items:center}
+@media(max-width:820px){.hero{grid-template-columns:1fr}}
+.hero h1{color:#fff}
+.hero .lead{font-size:clamp(1.04rem,1.7vw,1.18rem);color:#E3D2BE;margin-top:16px;max-width:54ch}
+.pill{display:inline-block;margin-top:20px;font-size:.85rem;font-weight:600;border:1px solid var(--ouro);color:var(--ouro);border-radius:999px;padding:6px 14px}
+.heroimg{position:relative}
+.heroimg img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:22px;display:block;box-shadow:0 24px 60px rgba(0,0,0,.35)}
+.heroimg .tag{position:absolute;left:-10px;bottom:22px;background:var(--cereja);color:#fff;font-family:Caveat,cursive;font-size:1.6rem;padding:6px 18px;border-radius:12px;transform:rotate(-4deg)}
+@media(max-width:820px){.heroimg .tag{left:10px}}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:28px}
+@media(max-width:700px){.stats{grid-template-columns:1fr}}
+.stat{background:#fff;border:1px solid var(--ln);border-radius:18px;padding:20px;display:grid;gap:6px;align-content:start}
+.stat .n{font-family:"Young Serif",serif;font-size:clamp(1.5rem,2.6vw,2rem);color:var(--cereja);line-height:1;white-space:nowrap}
+.stat p{font-size:.93rem;color:var(--sub)}
+.read{margin-top:22px;background:var(--cacau);color:#F6EADB;border-radius:18px;padding:20px 22px;font-size:1.02rem}
+.read b{color:var(--ouro)}
+.trend{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:clamp(18px,4vw,44px);align-items:center;margin-top:44px}
+.trend:nth-of-type(even) .gal{order:-1}
+@media(max-width:820px){.trend{grid-template-columns:1fr}.trend:nth-of-type(even) .gal{order:0}}
+.trend h3{font-size:clamp(1.4rem,2.6vw,1.8rem)}
+.trend .num{font-family:Caveat,cursive;font-size:2rem;color:var(--ouro);line-height:1}
+.trend p{color:var(--sub);margin-top:10px}
+.trend ul{margin:12px 0 0;padding-left:18px;color:var(--sub)}
+.gal{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.gal img{width:100%;height:100%;aspect-ratio:1/1;object-fit:cover;border-radius:16px;display:block}
+.gal.one{grid-template-columns:1fr}.gal.one img{aspect-ratio:5/4}
+.gal.three img:first-child{grid-row:span 2;aspect-ratio:auto}
+.reel-wrap{position:relative;margin-top:28px}
+.reels{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:12px;scrollbar-width:thin}
+.reel{flex:0 0 min(270px,78vw);scroll-snap-align:start;display:grid;gap:10px}
+.reel video{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:18px;background:#1E0F0B;display:block}
+.reel b{color:#fff;font-size:1rem}
+.reel span{font-size:.88rem;color:#D9C3AA}
+.nav{display:flex;gap:10px;margin-top:14px}
+.nav button{width:46px;height:46px;border-radius:50%;border:1px solid var(--ouro);background:transparent;color:var(--ouro);font-size:1.2rem;cursor:pointer}
+.nav button:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.credit{font-size:.82rem;color:#BFA58B;margin-top:10px}
+table{width:100%;border-collapse:collapse;margin-top:24px;background:#fff;border-radius:14px;overflow:hidden}
+th,td{padding:12px 14px;border-bottom:1px solid var(--ln);text-align:left;vertical-align:top}
+th{font-size:.82rem;color:var(--sub);font-weight:600;background:#F6EDE0}
+td.num{text-align:right;white-space:nowrap;font-weight:600;color:var(--cereja)}
+td small{display:block;color:var(--sub);font-size:.82rem}
+.note{font-size:.88rem;color:var(--sub);margin-top:14px;max-width:74ch}
+.props{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:24px}
+@media(max-width:640px){.props{grid-template-columns:1fr}}
+.prop{background:#fff;border:1px solid var(--ln);border-radius:16px;overflow:hidden;display:grid;grid-template-rows:auto 1fr}
+.prop img{width:100%;height:150px;object-fit:cover;display:block}
+.prop div{padding:14px 16px 16px;display:grid;gap:4px;align-content:start}
+.prop .k{font-size:.75rem;font-weight:700;color:var(--ouro)}
+.prop h3{font-size:1.1rem}
+.prop p{font-size:.88rem;color:var(--sub);line-height:1.45}
+@media(max-width:640px){.prop{grid-template-columns:110px minmax(0,1fr);grid-template-rows:auto}.prop img{height:100%;min-height:110px}}
+.viz{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:28px}
+@media(max-width:820px){.viz{grid-template-columns:1fr}}
+.vc{background:#fff;border:1px solid var(--ln);border-radius:20px;padding:24px;display:grid;gap:10px;align-content:end;justify-items:center;text-align:center;min-height:300px}
+.vc .big{font-family:"Young Serif",serif;font-weight:400;font-size:1.35rem;color:var(--cacau)}
+.vc small{font-size:.85rem;color:var(--sub)}
+.bars{display:flex;align-items:flex-end;gap:2px;height:140px;width:100%}
+.bars i{flex:1;background:#E8D3B5;border-radius:3px 3px 0 0}
+.bars i.pk{background:var(--cereja)}
+.axis{position:relative;height:18px;width:100%;font-size:.78rem;color:var(--sub);margin-top:-6px}
+.axis span{position:absolute;top:0;white-space:nowrap}
+.tag2{position:relative;background:var(--cereja);color:#fff;border-radius:14px 40px 40px 14px;padding:26px 44px 26px 30px;transform:rotate(-4deg);margin-block:20px 14px;box-shadow:0 12px 24px rgba(142,42,38,.25)}
+.tag2 i{position:absolute;right:16px;top:50%;width:12px;height:12px;margin-top:-6px;border-radius:50%;background:var(--creme)}
+.tag2 span{font-family:"Young Serif",serif;font-size:clamp(1.8rem,3.4vw,2.3rem);white-space:nowrap}
+.tag2 em{font-style:normal;font-family:Caveat,cursive;font-size:1.3rem;margin-inline:8px;color:#F6DDB3}
+.box6{display:grid;grid-template-columns:repeat(3,44px);gap:8px;padding:12px;border:2px dashed var(--ouro);border-radius:14px}
+.box6 span{height:30px;border-radius:9px;background:linear-gradient(180deg,#C9853F,#9A5A26);box-shadow:inset 0 -6px 0 rgba(0,0,0,.12)}
+.mbar{display:flex;width:100%;height:38px;border-radius:10px;overflow:hidden;font-size:.82rem;font-weight:700;margin-top:6px}
+.mbar div{display:grid;place-items:center;white-space:nowrap;color:#fff}
+.mbar .cost{width:42%;background:#B9A08A}.mbar .gain{width:58%;background:var(--cereja)}
+.cal{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:28px}
+@media(max-width:700px){.cal{grid-template-columns:1fr}}
+.day{border:1px solid #5A362B;border-radius:16px;padding:18px;display:grid;gap:6px;align-content:start}
+.day .d{font-family:"Young Serif",serif;font-size:1.25rem;color:var(--ouro);white-space:nowrap}
+.day p{font-size:.92rem;color:#E3D2BE}
+.src{font-size:.88rem;color:var(--sub);padding-left:18px;margin:16px 0 0}
+.src li{margin-bottom:6px}.src a{color:var(--cereja)}
+.sig{background:#17324A;color:#fff;border-top:6px solid #669DCF;font-family:"Bahnschrift","Barlow",system-ui,sans-serif}
+.sig .wrap{padding-block:clamp(32px,6vw,56px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:clamp(16px,4vw,48px);align-items:start}
+@media(max-width:760px){.sig .wrap{grid-template-columns:1fr}}
+.sig .brand img{width:min(220px,70%);height:auto;display:block;margin-bottom:14px}
+.sig h2{font-family:"Bahnschrift","Barlow",system-ui,sans-serif;font-weight:700;font-size:clamp(1.3rem,3vw,1.9rem);color:#fff;margin:6px 0 0}
+.sig .eyebrow{font-size:.78rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#9CC3E8}
+.sig .tx{color:#DCE6F1;font-size:clamp(.98rem,1.6vw,1.1rem);line-height:1.65;margin:0}
+.sig .pil{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}
+@media(max-width:560px){.sig .pil{grid-template-columns:1fr}}
+.sig .pil div{border:1px solid #2E4C68;border-radius:14px;padding:14px 16px;display:grid;gap:4px}
+.sig .pil b{color:#9CC3E8;font-size:.95rem}
+.sig .pil span{color:#DCE6F1;font-size:.9rem;line-height:1.5}
+.sig .who{margin-top:16px;font-size:.88rem;color:#A9BACB}
+.sig .who b{color:#fff}
+footer.ob{background:#17324A;color:#C9D6E3;font-size:.85rem;font-family:"Bahnschrift","Barlow",system-ui,sans-serif}
+footer.ob .wrap{padding-block:22px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;border-top:1px solid #2A4763}
+footer.ob span:last-child{text-align:right}
+footer.ob a{color:#fff;font-weight:700;text-decoration:none;border-bottom:1px solid #669DCF}
+@media(max-width:640px){footer.ob .wrap{grid-template-columns:1fr;text-align:center}footer.ob span:last-child{text-align:center}}
+@media(max-width:600px){table{font-size:14px}.stack thead{display:none}.stack tr{display:grid;padding-block:10px;border-bottom:1px solid var(--ln)}.stack td{display:flow-root;border:0;padding:3px 14px;padding-inline-start:8.5em;text-align:start}.stack td::before{content:attr(data-l);float:inline-start;width:7.5em;margin-inline-start:-7.5em;color:var(--sub);font-size:.8rem;font-weight:400}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+
+.top .eyebrow{color:var(--ouro)}
+.reply{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:20px}
+@media(max-width:760px){.reply{grid-template-columns:1fr 1fr}}
+.reply div{background:#fff;border:1px solid var(--ln);border-radius:16px;padding:16px;display:grid;gap:4px;align-content:start}
+.reply .rn{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--ouro);color:var(--cacau);font-weight:700;font-size:.85rem;margin-bottom:4px}
+.reply b{font-size:1rem;color:var(--cacau)}
+.reply small{font-size:.85rem;color:var(--sub)}
+.sec-h{display:flex;align-items:center;gap:14px;margin-bottom:14px;padding-bottom:12px;border-bottom:3px solid var(--ouro)}
+.sec-h .sec-n{margin:0;width:52px;height:52px;font-size:1.5rem;flex:none}
+.sec-t{font-family:"Young Serif",Georgia,serif;font-size:clamp(2rem,4.6vw,3rem);line-height:1;color:var(--cereja)}
+h2.sub{font-size:clamp(1.25rem,2.4vw,1.6rem);color:var(--ink)}
+.steps-nav{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}
+.steps-nav a{display:inline-flex;align-items:center;gap:8px;text-decoration:none;color:#F6EADB;border:1px solid #6A4436;border-radius:999px;padding:8px 14px;font-size:.88rem;font-weight:600}
+.steps-nav a b{display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--ouro);color:var(--cacau);font-size:.78rem}
+.sec-n{display:inline-grid;place-items:center;width:42px;height:42px;border-radius:50%;background:var(--cereja);color:#fff;font-family:"Young Serif",serif;font-size:1.2rem;margin-bottom:12px}
+.dark .sec-n{background:var(--ouro);color:var(--cacau)}
+.pgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:26px}
+@media(max-width:640px){.pgrid{grid-template-columns:1fr 1fr}}
+.pgrid figure{margin:0;position:relative}
+.pgrid img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:16px;display:block}
+.pgrid figcaption{position:absolute;left:10px;bottom:10px;background:rgba(59,30,23,.85);color:#fff;font-size:.8rem;font-weight:600;padding:4px 10px;border-radius:999px}
+.specs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:26px}
+@media(max-width:760px){.specs{grid-template-columns:1fr}}
+.spec{background:#fff;border:1px solid var(--ln);border-radius:18px;overflow:hidden}
+.spec img{width:100%;height:150px;object-fit:cover;display:block}
+.spec .in{padding:16px 18px 18px;display:grid;gap:10px}
+.spec h3{font-size:1.25rem}
+.spec dl{margin:0;display:grid}
+.spec dl div{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-top:1px solid var(--ln);font-size:.92rem}
+.spec dt{color:var(--sub);white-space:nowrap}
+.spec dd{margin:0;font-weight:600;color:var(--ink);text-align:right}
+.where{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:18px}
+@media(max-width:640px){.where{grid-template-columns:1fr 1fr}}
+.where div{background:var(--creme);border-radius:14px;padding:14px;text-align:center;font-size:.9rem;font-weight:600;color:var(--cacau)}
+.where svg{display:block;margin:0 auto 6px;width:28px;height:28px;stroke:var(--cereja);fill:none;stroke-width:1.8}
+.ladder{display:grid;gap:10px;margin-top:26px}
+.lr{display:grid;grid-template-columns:minmax(0,15em) minmax(0,1fr) 5.5em;gap:12px;align-items:center}
+.lr span small{display:block;font-size:.78rem;color:var(--sub)}
+.lr .t{height:26px;background:#F1E6D6;border-radius:8px;overflow:hidden}
+.lr .t div{height:100%;background:var(--ouro);border-radius:8px}
+.lr.hi .t div{background:var(--cereja)}
+.lr b{text-align:right;white-space:nowrap;font-family:"Young Serif",serif;font-weight:400;font-size:1.1rem}
+@media(max-width:560px){.lr{grid-template-columns:1fr 5em}.lr .t{grid-column:1/-1;grid-row:2}}
+.chips{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:16px}
+@media(max-width:640px){.chips{grid-template-columns:1fr}}
+.chip{border:1px solid var(--ln);border-radius:14px;padding:14px;background:#fff;display:grid;gap:2px}
+.chip b{font-family:"Young Serif",serif;font-weight:400;font-size:1.4rem;color:var(--cereja)}
+.chip span{font-size:.88rem;color:var(--sub)}
+.form{background:#fff;border:1px solid var(--ln);border-radius:18px;padding:clamp(16px,2.5vw,22px);margin-top:20px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 28px}
+@media(max-width:700px){.form{grid-template-columns:1fr}}
+.form .full{grid-column:1/-1}
+.q h3{font-family:Figtree,sans-serif;font-weight:700;font-size:.92rem;margin-bottom:8px;color:var(--cacau)}
+.opts{display:flex;flex-wrap:wrap;gap:6px}
+.opts label{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--ln);border-radius:999px;padding:6px 12px;min-height:38px;cursor:pointer;font-size:.86rem;background:var(--creme)}
+.opts input{width:16px;height:16px;margin:0;accent-color:var(--cereja)}
+.opts label:has(input:checked){border-color:var(--cereja);background:#F8E6E3}
+.prices3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.prices3 label{display:grid;gap:4px;font-size:.78rem;color:var(--sub)}
+.prices3 input,.form textarea{font:16px Figtree,sans-serif;border:1px solid var(--ln);border-radius:10px;padding:8px 10px;min-height:40px;width:100%}
+.form textarea{min-height:44px;height:44px;resize:vertical}
+.form input:focus-visible,.form textarea:focus-visible,.cta:focus-visible{outline:2px solid var(--cereja);outline-offset:2px}
+.cta{grid-column:1/-1;justify-self:start;background:var(--cereja);color:#fff;border:0;border-radius:999px;padding:14px 26px;font:600 1rem Figtree,sans-serif;cursor:pointer;min-height:48px}
+.ok,.out{grid-column:1/-1}
+.out{display:none;white-space:pre-wrap;background:var(--creme);border-radius:14px;padding:16px;font-size:.92rem}
+.out.show{display:block}
+.ok{font-size:.9rem;color:var(--cereja);font-weight:600}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="bar"><img src="logo.webp" alt="Doçaria Toque de Arte"><span>Sugestão de produto para o Natal · The Ocean Blue</span></div>
+    <div class="hero">
+      <div>
+        <p class="eyebrow">Natal 2026 · sugestão para avaliação</p>
+        <h1>Rabanada de confeitaria da Doçaria</h1>
+        <p class="lead">Uma linha de rabanada recheada para a vitrine, o delivery e as encomendas de Natal. Veja a ideia, como vender, quanto o mercado cobra e, no fim, confirme o que faz sentido para vocês.</p>
+        <nav class="steps-nav" aria-label="Partes da apresentação">
+          <a href="#ideia"><b>1</b>A ideia</a><a href="#vender"><b>2</b>Como vender</a><a href="#mercado"><b>3</b>Concorrência</a><a href="#confirmar"><b>4</b>Confirmação</a>
+        </nav>
+      </div>
+      <div class="heroimg">
+        <img src="f/foto-1.jpg" alt="Vitrine com rabanadas recheadas de vários sabores">
+        <span class="tag">um sabor por fileira</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="band" id="ideia">
+  <div class="wrap">
+    <div class="sec-h"><span class="sec-n">1</span><span class="sec-t">A ideia</span></div>
+    <h2 class="sub">Como o produto é</h2>
+    <p class="intro">Rabanada crocante com açúcar e canela, recheada e decorada como doce de vitrine. Exemplos de outras confeitarias, como referência de modelo.</p>
+    <div class="pgrid" id="pgrid"></div>
+  </div>
+</section>
+
+
+<section class="band cream" id="vender">
+  <div class="wrap">
+    <div class="sec-h"><span class="sec-n">2</span><span class="sec-t">Como vender</span></div>
+    <h2 class="sub">Três apresentações, cada uma para um tipo de venda</h2>
+    <p class="intro">Quantidades sugeridas, para ajustar na ficha técnica. A caixa também pode ter versão com 6 para a ceia.</p>
+    <div class="specs" id="specs"></div>
+    <h3 style="margin-top:34px">Onde vender</h3>
+    <div class="where">
+      <div><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="12" rx="2"/><path d="M3 12h18M7 8V5h10v3"/></svg>Vitrine da loja</div>
+      <div><svg viewBox="0 0 24 24"><path d="M4 20l1.5-4A8 8 0 1 1 9 19.5z"/></svg>Encomenda no WhatsApp</div>
+      <div><svg viewBox="0 0 24 24"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 18h2"/></svg>99Food e apps</div>
+      <div><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg>Catálogo de Natal no site</div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="mercado">
+  <div class="wrap">
+    <div class="sec-h"><span class="sec-n">3</span><span class="sec-t">Concorrência</span></div>
+    <h2 class="sub">Quanto e como o mercado está vendendo</h2>
+    <p class="intro">Preço da unidade, do mais simples ao recheado.</p>
+    <div class="ladder" id="ladder"></div>
+    <div class="chips">
+      <div class="chip"><b>R$ 48</b><span>Caixa com 6 gourmet (cerca de R$ 8 cada)</span></div>
+      <div class="chip"><b>R$ 42</b><span>Bandeja de 500 g, tradicional</span></div>
+      <div class="chip"><b>R$ 98,90</b><span>1 kg de rabanada gourmet</span></div>
+    </div>
+    <div class="viz">
+      <div class="vc">
+        <div class="bars" id="dez"></div>
+        <div class="axis"><span style="left:0">1/12</span><span style="left:74%;transform:translateX(-50%);color:var(--cereja);font-weight:700">24/12</span><span style="right:0">31/12</span></div>
+        <b class="big">Pico: 23 e 24/12</b>
+        <small>Procura no Google em dezembro (forma aproximada)</small>
+      </div>
+      <div class="vc">
+        <div class="tag2"><i></i><span>R$ 12<em>a</em>R$ 15</span></div>
+        <b class="big">a unidade recheada</b>
+        <small>Preço em São Bernardo do Campo neste Natal</small>
+      </div>
+      <div class="vc">
+        <div class="box6"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+        <div class="mbar"><div class="cost">custo R$ 20</div><div class="gain">sobra R$ 28</div></div>
+        <b class="big">Caixa com 6: R$ 48</b>
+        <small>Margem bruta acima de 55%</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band cream" id="confirmar">
+  <div class="wrap">
+    <div class="sec-h"><span class="sec-n">4</span><span class="sec-t">Confirmação</span></div>
+    <h2 class="sub">O que a Doçaria aprova?</h2>
+    <p class="intro">Basta responder pelo WhatsApp com estes quatro pontos.</p>
+    <div class="reply">
+      <div><span class="rn">1</span><b>Formatos</b><small>Recheada, copo, caixa 3 sabores ou caixa com 6</small></div>
+      <div><span class="rn">2</span><b>Sabores</b><small>Doce de leite, Ninho, brigadeiro, avelã, chocolate</small></div>
+      <div><span class="rn">3</span><b>Preço</b><small>Valor pensado para cada formato</small></div>
+      <div><span class="rn">4</span><b>Data das fotos</b><small>Um dia entre 1 e 5 de dezembro</small></div>
+    </div>
+  </div>
+</section>
+
+<section class="cream" style="padding-block:2px 28px">
+  <div class="wrap">
+    <p class="src" style="padding:0">Fontes: <a href="https://tvsaobernardo.com/confeiteira-de-sao-bernardo-abre-encomendas-de-rabanadas-para-o-natal-2026/" target="_blank" rel="noopener">TV São Bernardo</a> · <a href="https://mercadoeconsumo.com.br/15/12/2025/produtos/ampm-lanca-rabanada-especial-para-o-natal-e-festas-de-fim-de-ano/" target="_blank" rel="noopener">Mercado&amp;Consumo (AmPm)</a> · <a href="https://reidodelivery.com.br/blog/rabanada-para-vender" target="_blank" rel="noopener">Rei do Delivery</a> · <a href="https://www.padariaalianca.com.br/produtos/rabanada" target="_blank" rel="noopener">Padaria Aliança</a> · <a href="https://domsaborcongelados.com.br/produto/rabanada-1kg/" target="_blank" rel="noopener">Dom Sabor</a> · <a href="https://labdoconfeiteiro.com.br/doces-de-natal-tendencias/" target="_blank" rel="noopener">Lab do Confeiteiro (Google Trends)</a> · Fotos de perfis de confeitarias no Instagram, como referência.</p>
+  </div>
+</section>
+
+<aside class="sig"><div class="wrap">
+  <div class="brand">
+    <img src="logo-branco.png" alt="The Ocean Blue">
+    <p class="eyebrow">Estratégia e criação</p>
+    <h2>DNA The Ocean Blue</h2>
+  </div>
+  <div>
+    <p class="tx">Esta sugestão nasceu da observação de como os clientes compram na loja e da leitura das tendências de Natal nas redes e nas confeitarias. Esse é o jeito The Ocean Blue de trabalhar: unir a leitura do território e do comportamento do consumidor à criação que transforma essa leitura em imagem, vídeo e conteúdo que o cliente quer ver e compartilhar.</p>
+    <div class="pil">
+      <div><b>Inteligência de mercado</b><span>Metodologia de geomarketing da nossa trajetória em estudos de expansão para grandes redes.</span></div>
+      <div><b>Criação e audiovisual</b><span>Direção criativa, vídeo e redes sociais que transformam a ideia em experiência e divulgação.</span></div>
+    </div>
+    <p class="who"><b>Luiz Fernando</b> · estratégia e inteligência de mercado  |  <b>Elaine Lazari</b> · criação, audiovisual e mídias sociais</p>
+  </div>
+</div></aside>
+<footer class="ob"><div class="wrap"><span>Doçaria Toque de Arte · São Bernardo do Campo</span><a href="https://theoceanblue.com.br" target="_blank" rel="noopener">theoceanblue.com.br</a><span>The Ocean Blue · estratégia, dados e criação</span></div></footer>
+
+<script>
+{
+const $=id=>document.getElementById(id);
+const fotos=[['f/foto-2.jpg','Cobertura e topping'],['f/foto-5.jpg','Bandejas por sabor'],['f/foto-3.jpg','Creme maçaricado'],['f/foto-6.jpg','Banho de chocolate'],['f/foto-7.jpg','Mordidas com recheio'],['f/foto-9.jpg','Pote com 3 sabores']];
+$('pgrid').innerHTML=fotos.map(([s,c])=>`<figure><img src="${s}" alt="${c}" loading="lazy"><figcaption>${c}</figcaption></figure>`).join('');
+
+
+const specs=[
+ ['f/foto-5.jpg','Rabanada recheada',[['Quantidade','1 unidade'],['Embalagem','Bandeja'],['Canal','Vitrine e apps']]],
+ ['v/poster-3.jpg','Copo de Rabanada',[['Quantidade','8 mordidas'],['Embalagem','Copo 300 ml'],['Canal','Balcão e delivery']]],
+ ['f/foto-9.jpg','Caixa Natal',[['Quantidade','3 sabores'],['Embalagem','Pote'],['Canal','Encomenda']]]
+];
+$('specs').innerHTML=specs.map(([img,t,rows])=>`<div class="spec"><img src="${img}" alt="${t}" loading="lazy"><div class="in"><h3>${t}</h3><dl>${rows.map(([a,b])=>`<div><dt>${a}</dt><dd>${b}</dd></div>`).join('')}</dl></div></div>`).join('');
+
+const lad=[['Rede de conveniência','Tradicional · Natal 2025',4.99,'R$ 4,99'],['Confeiteira em São Bernardo','Tradicional',9,'R$ 9,00'],['Confeiteira em São Bernardo','Recheada de doce de leite',12,'R$ 12,00'],['Confeiteira em São Bernardo','Recheada de creme de avelã',15,'R$ 15,00']];
+$('ladder').innerHTML=lad.map(([a,b,v,l],i)=>`<div class="lr${i>1?' hi':''}"><span>${a}<small>${b}</small></span><div class="t"><div style="width:${(v/15*100).toFixed(0)}%"></div></div><b>${l}</b></div>`).join('');
+
+const dz=[10,10,10,10,11,11,12,12,13,18,22,26,30,34,38,42,50,56,62,70,78,86,100,100,30,18,16,32,38,42,48];
+$('dez').innerHTML=dz.map((v,d)=>`<i class="${d===22||d===23?'pk':''}" style="height:${v}%"></i>`).join('');
+
+}
+</script>
+</body>
+</html>
