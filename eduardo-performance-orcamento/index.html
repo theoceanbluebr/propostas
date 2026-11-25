@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Orçamento — Site Performance Equipamentos</title>
+<style>
+  :root { --azul:#0b5f8a; --azul-escuro:#073c57; --menta:#e6f4fa; --tinta:#17201b; --cinza:#5d6a63; --verde:#17853f; }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family: "Segoe UI", system-ui, sans-serif; color:var(--tinta); background:#f4f8fb; line-height:1.55; }
+  .pagina { max-width: 880px; margin: 0 auto; padding: 36px 22px 60px; }
+  .topo { background: linear-gradient(135deg, var(--azul) 0%, var(--azul-escuro) 100%); color:#fff; border-radius: 28px; padding: 36px 34px; }
+  .topo small { letter-spacing:.18em; text-transform:uppercase; font-weight:700; opacity:.85; font-size:12px; }
+  .topo h1 { margin: 8px 0 6px; font-size: 32px; line-height:1.15; }
+  .topo p { margin: 0; opacity:.92; }
+  .cartao { background:#fff; border-radius: 24px; padding: 30px; box-shadow: 0 16px 36px -22px rgba(7,60,87,.35); margin-top: 22px; }
+  .cartao h2 { margin: 0 0 14px; font-size: 20px; color: var(--azul-escuro); }
+  .dados { display:grid; grid-template-columns: 1fr 1fr; gap: 14px 28px; font-size: 15px; }
+  .dados span { display:block; color:var(--cinza); font-size: 12px; text-transform: uppercase; letter-spacing: .06em; font-weight:700; }
+  table { width:100%; border-collapse: collapse; font-size: 15px; }
+  th, td { padding: 13px 10px; text-align: left; border-bottom: 1px solid #e3ecf2; }
+  th { font-size: 12px; text-transform: uppercase; letter-spacing:.06em; color: var(--cinza); }
+  td.num, th.num { text-align: right; white-space: nowrap; }
+  td small { color: var(--cinza); display:block; font-size: 13px; }
+  .total-linha td { font-weight: 700; border-bottom: 0; }
+  .resumo { display:grid; grid-template-columns: 1fr; gap: 4px; margin-top: 16px; }
+  .resumo .linha { display:flex; justify-content: space-between; gap: 16px; font-size: 16px; padding: 10px 0; border-bottom: 1px dashed #cfdde7; }
+  .resumo .desconto { color: var(--verde); font-weight: 700; }
+  .resumo .final-linha { font-weight: 800; font-size: 17px; color: var(--azul-escuro); border-bottom: 0; }
+  .final { margin-top: 18px; background: var(--menta); border-radius: 20px; padding: 24px 26px; display:flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+  .final .valor { font-size: 40px; font-weight: 800; color: var(--azul-escuro); line-height: 1; }
+  .final small { color: var(--cinza); display:block; margin-bottom: 6px; font-weight:700; text-transform: uppercase; letter-spacing: .06em; font-size: 12px; }
+  .final .obs { font-size: 14px; color: var(--cinza); max-width: 340px; margin: 0; }
+  .renovacao-caixa { display:grid; grid-template-columns: 1fr 1fr; gap: 26px; align-items: start; }
+  .renovacao-caixa img { width: 100%; border-radius: 14px; border: 1px solid #dfe8ee; background:#fff; }
+  .renovacao-caixa p { margin: 0 0 12px; color: var(--cinza); }
+  .renovacao-caixa strong { color: var(--tinta); }
+  .legenda { font-size: 13px; color: var(--cinza); margin-top: 8px; }
+  .inclui ul { margin: 0; padding-left: 20px; }
+  .inclui li { margin-bottom: 8px; }
+  .rodape { text-align:center; color: var(--cinza); font-size: 13px; margin-top: 26px; }
+  @media (max-width: 600px) { .dados, .renovacao-caixa { grid-template-columns: 1fr; } .topo h1 { font-size: 26px; } .final .valor { font-size: 32px; } }
+</style>
+</head>
+<body>
+<div class="pagina">
+
+  <header class="topo">
+    <small>Orçamento</small>
+    <h1>Site institucional Performance Equipamentos</h1>
+    <p>Desenvolvimento completo do site, com domínio e hospedagem incluídos até 10/12/2026.</p>
+  </header>
+
+  <section class="cartao">
+    <h2>Cliente e fornecedor</h2>
+    <div class="dados">
+      <div><span>Cliente</span>Eduardo Machado — Performance Equipamentos</div>
+      <div><span>Data</span>17/11/2026</div>
+      <div><span>Fornecedor</span>The Ocean Blue — Luiz Fernando</div>
+      <div><span>Projeto</span>Site novo com páginas de linha, marcas, catálogos e contato</div>
+    </div>
+  </section>
+
+  <section class="cartao">
+    <h2>Horas de trabalho e valor</h2>
+    <table>
+      <thead>
+        <tr><th>Etapa</th><th class="num">Horas</th><th class="num">Valor/h</th><th class="num">Subtotal</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Briefing e planejamento das páginas<small>Estrutura, destaques e ordem dos equipamentos</small></td><td class="num">1 h</td><td class="num">R$ 125,00</td><td class="num">R$ 125,00</td></tr>
+        <tr><td>Organização do material do cliente<small>Fotos, catálogos em PDF, vídeos e logotipo</small></td><td class="num">1 h</td><td class="num">R$ 125,00</td><td class="num">R$ 125,00</td></tr>
+        <tr><td>Tratamento de imagens<small>Recorte de produtos e mapa do Brasil em 3D</small></td><td class="num">2 h</td><td class="num">R$ 125,00</td><td class="num">R$ 250,00</td></tr>
+        <tr><td>Design e programação do site<small>Layout, páginas, versão para celular e formulários de contato</small></td><td class="num">4 h</td><td class="num">R$ 125,00</td><td class="num">R$ 500,00</td></tr>
+        <tr><td>Páginas de produto e catálogos<small>Catálogo Pescador, Max Freezer e Gabi Eletro</small></td><td class="num">2 h</td><td class="num">R$ 125,00</td><td class="num">R$ 250,00</td></tr>
+        <tr><td>Revisões e ajustes<small>Ajustes solicitados pelo cliente</small></td><td class="num">1 h</td><td class="num">R$ 125,00</td><td class="num">R$ 125,00</td></tr>
+        <tr><td>Publicação, domínio e hospedagem<small>Site no ar e domínio ativo até 10/12/2026</small></td><td class="num">1 h</td><td class="num">R$ 125,00</td><td class="num">R$ 125,00</td></tr>
+        <tr class="total-linha"><td>Total de trabalho</td><td class="num">12 h</td><td class="num"></td><td class="num">R$ 1.500,00</td></tr>
+      </tbody>
+    </table>
+
+    <div class="resumo">
+      <div class="linha"><span>Valor integral do projeto</span><span>R$ 1.500,00</span></div>
+      <div class="linha desconto"><span>Desconto de parceria</span><span>− R$ 503,00</span></div>
+      <div class="linha"><span>Site</span><span>R$ 997,00</span></div>
+
+    </div>
+
+    <div class="final">
+      <div>
+        <small>Investimento do site</small>
+        <div class="valor">R$ 997,00</div>
+      </div>
+      <p class="obs">Valor de 2024 para o site: R$ 1.500,00. Neste ano o investimento é de R$ 997,00, abaixo do valor de 2024.</p>
+    </div>
+    <div class="final">
+      <div>
+        <small>Renovação 2026</small>
+        <div class="valor">R$ 415,65</div>
+      </div>
+      <p class="obs">Domínio e hospedagem. O valor da renovação será enviado em 10/12/2026 e não está incluído nos R$ 997,00.</p>
+    </div>
+    <div class="final">
+      <div>
+        <small>Valor final: site + renovação</small>
+        <div class="valor">R$ 1.412,65</div>
+      </div>
+      <p class="obs">R$ 997,00 do site + R$ 415,65 da renovação 2026.</p>
+    </div>
+  </section>
+
+  <section class="cartao">
+    <h2>Renovação do domínio e da hospedagem</h2>
+    <div class="renovacao-caixa">
+      <div>
+        <img src="assets/fatura.jpg" alt="Fatura de renovação de 2025 (HostGator)">
+        <p class="legenda">Fatura de 2025 (emitida em 10/12/2025, vencimento 24/12/2025): R$ 415,65.</p>
+      </div>
+      <div>
+        <p>O domínio <strong>equipamentosperformance.com.br</strong> e a hospedagem estão incluídos até <strong>10/12/2026</strong>.</p>
+        <p>Nessa mesma data, em 2026, enviaremos para o cliente o valor da renovação do próximo ano.</p>
+        <p>A renovação é cobrada à parte e não está incluída nos R$ 997,00 do site.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cartao">
+    <h2>Bonificação (sem custo para o cliente)</h2>
+    <table>
+      <thead>
+        <tr><th>Serviço</th><th class="num">Horas</th><th class="num">Valor/h</th><th class="num">Valor</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Gestão de Google Meu Negócio e Google Ads por 6 meses<small>R$ 997,00 por mês × 6 meses</small></td><td class="num">—</td><td class="num">R$ 997,00/mês</td><td class="num">R$ 5.982,00</td></tr>
+        <tr><td>Instalação do Pixel e da Tag de conversões no site, e criação da conta de anúncios<small>Medição de contatos e vendas vindos do site</small></td><td class="num">2 h</td><td class="num">R$ 125,00</td><td class="num">R$ 250,00</td></tr>
+        <tr class="total-linha"><td>Total bonificado</td><td class="num"></td><td class="num"></td><td class="num">R$ 6.232,00</td></tr>
+      </tbody>
+    </table>
+    <p class="legenda">Bonificação pela indicação da Naletto Máquinas. Estes serviços não entram no investimento de R$ 997,00 nem no valor final.</p>
+  </section>
+
+  <section class="cartao">
+    <h2>Forma de pagamento</h2>
+    <table>
+      <thead>
+        <tr><th>Parcela</th><th>Vencimento</th><th>Forma</th><th class="num">Valor</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1ª parcela (50%)</td><td>15/12/2026</td><td>Boleto</td><td class="num">R$ 498,50</td></tr>
+        <tr><td>2ª parcela (50%)</td><td>15/01/2027</td><td>Boleto</td><td class="num">R$ 498,50</td></tr>
+                <tr class="total-linha"><td>Total do site</td><td></td><td></td><td class="num">R$ 997,00</td></tr>
+      </tbody>
+    </table>
+    <h3 style="margin:26px 0 10px;color:var(--azul-escuro);font-size:17px;">Forma de pagamento da renovação</h3>
+    <table>
+      <thead>
+        <tr><th>Renovação 2026 (domínio e hospedagem)</th><th>Vencimento</th><th>Forma</th><th class="num">Valor</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Anual</td><td>20/12/2026</td><td>Boleto</td><td class="num">R$ 415,65</td></tr>
+      </tbody>
+    </table>
+    <p class="legenda">Valor não incluído no total do site (R$ 997,00).</p>
+    <p style="margin:18px 0 0;padding:18px 22px;border-radius:16px;background:var(--azul-escuro);color:#ffffff;font-size:18px;font-weight:800;">Total das duas cobranças: R$ 1.412,65<span style="display:block;font-size:14px;font-weight:600;margin-top:6px;">R$ 997,00 do site + R$ 415,65 da renovação</span></p>
+  </section>
+
+  <section class="cartao inclui">
+    <h2>O que está incluso</h2>
+    <ul>
+      <li>Site completo com home, páginas de linha de produto e de marca, catálogos e contato</li>
+      <li>Versão adaptada para celular</li>
+      <li>Domínio e hospedagem incluídos até 10/12/2026</li>
+      <li>Botões de contato por WhatsApp direcionando o assunto de cada equipamento</li>
+    </ul>
+  </section>
+
+  <p class="rodape">The Ocean Blue · Orçamento emitido em 17/11/2026</p>
+</div>
+</body>
+</html>
