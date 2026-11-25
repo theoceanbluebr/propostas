@@ -27,6 +27,7 @@ h2{font-size:1.2rem;color:var(--profundo);margin:8px 0 10px;border-bottom:2px so
 .opts{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
 .opt{display:flex;align-items:center;gap:6px;border:1px solid #AFC4DC;border-radius:999px;padding:5px 12px;font-size:.95rem;cursor:pointer}
 .opt input{width:16px;height:16px;accent-color:var(--medio)}
+.campo{width:100%;border:1px solid #AFC4DC;border-radius:8px;padding:9px 10px;font:inherit;margin-bottom:8px}
 textarea{width:100%;min-height:90px;border:1px solid #AFC4DC;border-radius:12px;padding:10px;font:inherit}
 .acoes{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0}
 button.acao,.btn{background:var(--medio);color:#fff;border:0;border-radius:999px;padding:11px 20px;font:inherit;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block}
@@ -52,6 +53,9 @@ button.acao,.btn{background:var(--medio);color:#fff;border:0;border-radius:999px
 
 <section class="wrap">
   <h2 id="t-sec">Sua seleção</h2>
+  <label for="outros" id="t-outrosl"><b>Outros serviços que você precisa (não listados acima)</b></label>
+  <textarea id="outros"></textarea>
+  <br><br>
   <label for="obs" id="t-obsl"><b>Observações (opcional)</b></label>
   <textarea id="obs"></textarea>
   <div class="acoes">
@@ -66,8 +70,8 @@ button.acao,.btn{background:var(--medio);color:#fff;border:0;border-radius:999px
 
 <script>
 const UI = {
-  pt: { h1:"Escolha os serviços que fazem sentido para você", intro:"Marque o que quer. Nos serviços de posts, carrosséis e stories, escolha a quantidade por mês. No fim, gere a mensagem e envie para a gente.", aviso:"<b>Versão de teste.</b> Descrições provisórias. Não há preços nesta página.", sec:"Sua seleção", obsl:"<b>Observações (opcional)</b>", obsph:"Ex.: prazo, dúvidas, contexto do negócio", gerar:"Gerar mensagem", wa:"Enviar pelo WhatsApp", pronta:"Mensagem pronta. Copie o texto abaixo ou use o botão do WhatsApp.", copiada:"Mensagem copiada. Cole no WhatsApp ou no e-mail, ou use o botão do WhatsApp.", saudacao:"Olá! Esta é a minha seleção de serviços:", nenhum:"(nenhum serviço marcado)", obs:"Observações: ", livre:"Outras feiras em que você participa (até 4):", feira:"Feira ", rodape:"The Ocean Blue · estratégia, dados e criação · theoceanblue.com.br" },
-  es: { h1:"Elija los servicios que tienen sentido para usted", intro:"Marque lo que le interesa. En los servicios de posts, carruseles y stories, elija la cantidad por mes. Al final, genere el mensaje y envíenoslo.", aviso:"<b>Versión de prueba.</b> Descripciones provisorias. Esta página no muestra precios.", sec:"Su selección", obsl:"<b>Observaciones (opcional)</b>", obsph:"Ej.: plazo, dudas, contexto del negocio", gerar:"Generar mensaje", wa:"Enviar por WhatsApp", pronta:"Mensaje listo. Copie el texto de abajo o use el botón de WhatsApp.", copiada:"Mensaje copiado. Péguelo en WhatsApp o en el correo, o use el botón de WhatsApp.", saudacao:"¡Hola! Esta es mi selección de servicios:", nenhum:"(ningún servicio marcado)", obs:"Observaciones: ", livre:"Otras ferias en las que usted participa (hasta 4):", feira:"Feria ", rodape:"The Ocean Blue · estrategia, datos y creación · theoceanblue.com.br" }
+  pt: { h1:"Escolha os serviços que fazem sentido para você", intro:"Marque o que quer. Nos serviços de posts, carrosséis e stories, escolha a quantidade por mês. No fim, gere a mensagem e envie para a gente.", aviso:"<b>Versão de teste.</b> Descrições provisórias. Não há preços nesta página.", sec:"Sua seleção", outrosl:"<b>Outros serviços que você precisa (não listados acima)</b>", outrosph:"Descreva o que precisa. Vamos avaliar se conseguimos fazer.", obsl:"<b>Observações (opcional)</b>", obsph:"Ex.: prazo, dúvidas, contexto do negócio", gerar:"Gerar mensagem", wa:"Enviar pelo WhatsApp", pronta:"Mensagem pronta. Copie o texto abaixo ou use o botão do WhatsApp.", copiada:"Mensagem copiada. Cole no WhatsApp ou no e-mail, ou use o botão do WhatsApp.", saudacao:"Olá! Esta é a minha seleção de serviços:", nenhum:"(nenhum serviço marcado)", outros:"Outros serviços que preciso: ", obs:"Observações: ", livre:"Outras feiras em que você participa:", rodape:"The Ocean Blue · estratégia, dados e criação · theoceanblue.com.br" },
+  es: { h1:"Elija los servicios que tienen sentido para usted", intro:"Marque lo que le interesa. En los servicios de posts, carruseles y stories, elija la cantidad por mes. Al final, genere el mensaje y envíenoslo.", aviso:"<b>Versión de prueba.</b> Descripciones provisorias. Esta página no muestra precios.", sec:"Su selección", outrosl:"<b>Otros servicios que necesita (no listados arriba)</b>", outrosph:"Describa lo que necesita. Vamos a evaluar si podemos hacerlo.", obsl:"<b>Observaciones (opcional)</b>", obsph:"Ej.: plazo, dudas, contexto del negocio", gerar:"Generar mensaje", wa:"Enviar por WhatsApp", pronta:"Mensaje listo. Copie el texto de abajo o use el botón de WhatsApp.", copiada:"Mensaje copiado. Péguelo en WhatsApp o en el correo, o use el botón de WhatsApp.", saudacao:"¡Hola! Esta es mi selección de servicios:", nenhum:"(ningún servicio marcado)", outros:"Otros servicios que necesito: ", obs:"Observaciones: ", livre:"Otras ferias en las que usted participa:", rodape:"The Ocean Blue · estrategia, datos y creación · theoceanblue.com.br" }
 };
 
 const GRUPOS = {
@@ -185,6 +189,8 @@ function aplicarUI() {
   document.getElementById("t-intro").textContent = u.intro;
   document.getElementById("t-aviso").innerHTML = u.aviso;
   document.getElementById("t-sec").textContent = u.sec;
+  document.getElementById("t-outrosl").innerHTML = u.outrosl;
+  document.getElementById("outros").placeholder = u.outrosph;
   document.getElementById("t-obsl").innerHTML = u.obsl;
   document.getElementById("obs").placeholder = u.obsph;
   document.getElementById("gerar").textContent = u.gerar;
@@ -225,7 +231,7 @@ function renderizar() {
     if (g.livre) {
       const bloco = document.createElement("div"); bloco.style.margin = "14px 0";
       const t = document.createElement("p"); t.textContent = UI[lang].livre; t.style.fontWeight = "700"; bloco.appendChild(t);
-      for (let k = 1; k <= 4; k++) { const inp = document.createElement("input"); inp.type = "text"; inp.id = "feira-livre-" + k; inp.placeholder = UI[lang].feira + k; inp.style.cssText = "width:100%;padding:9px 10px;border:1px solid #AFC4DC;border-radius:8px;font:inherit;margin-bottom:8px"; bloco.appendChild(inp); }
+      for (let k = 1; k <= 2; k++) { const inp = document.createElement("input"); inp.type = "text"; inp.id = "feira-livre-" + k; inp.className = "campo"; bloco.appendChild(inp); }
       lista.appendChild(bloco);
     }
   });
@@ -235,7 +241,8 @@ function estado() {
   return {
     marcados: Array.from(document.querySelectorAll('#lista input[data-c]')).filter(c => c.checked).map(c => c.id),
     opcoes: Array.from(document.querySelectorAll('#lista input[data-v]')).filter(o => o.checked).map(o => o.id),
-    livre: [1,2,3,4].map(k => { const e = document.getElementById("feira-livre-" + k); return e ? e.value : ""; }),
+    livre: [1,2].map(k => { const e = document.getElementById("feira-livre-" + k); return e ? e.value : ""; }),
+    outros: document.getElementById("outros").value,
     obs: document.getElementById("obs").value
   };
 }
@@ -244,6 +251,7 @@ function restaurar(s) {
   s.marcados.forEach(id => { const e = document.getElementById(id); if (e) e.checked = true; });
   s.opcoes.forEach(id => { const e = document.getElementById(id); if (e) e.checked = true; });
   s.livre.forEach((v, i) => { const e = document.getElementById("feira-livre-" + (i + 1)); if (e) e.value = v; });
+  document.getElementById("outros").value = s.outros;
   document.getElementById("obs").value = s.obs;
 }
 
@@ -254,18 +262,20 @@ function selecao() {
     const opcoes = Array.from(document.querySelectorAll('#lista input[data-parent="' + cb.id + '"]')).filter(o => o.checked);
     itens.push({ codigo: cb.dataset.c, servico: cb.dataset.n, quantidades: opcoes.map(o => o.dataset.v), unidade: opcoes.length ? opcoes[0].dataset.unidade : null });
   });
-  for (let k = 1; k <= 4; k++) { const v = document.getElementById("feira-livre-" + k); if (v && v.value.trim()) itens.push({ codigo: "FE-outra", servico: v.value.trim(), quantidades: [], unidade: null }); }
+  for (let k = 1; k <= 2; k++) { const v = document.getElementById("feira-livre-" + k); if (v && v.value.trim()) itens.push({ codigo: "FE-outra", servico: v.value.trim(), quantidades: [], unidade: null }); }
   return itens;
 }
 
 function montarMensagem() {
   const itens = selecao();
+  const outros = document.getElementById("outros").value.trim();
   const obs = document.getElementById("obs").value.trim();
   let t = UI[lang].saudacao + "\n\n";
   if (!itens.length) t += UI[lang].nenhum + "\n";
   itens.forEach(i => {
     t += "- " + i.codigo + " " + i.servico + (i.quantidades.length ? " — " + i.quantidades.join(", ") + " " + i.unidade : "") + "\n";
   });
+  if (outros) t += "\n" + UI[lang].outros + outros + "\n";
   if (obs) t += "\n" + UI[lang].obs + obs + "\n";
   return t;
 }
