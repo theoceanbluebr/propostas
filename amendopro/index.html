@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AmendoPRO · Seleção de serviços</title>
+<style>
+:root{--azul:#669DCF;--medio:#3D739F;--profundo:#39688C;--marinho:#17324A;--nevoa:#E3EAF5}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--marinho);background:#fff;line-height:1.5}
+.topo{background:linear-gradient(#fff,var(--nevoa));padding:28px 16px 20px;border-bottom:4px solid var(--azul)}
+.wrap{max-width:820px;margin:0 auto;padding:0 16px}
+.eyebrow{font-size:.78rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--medio);margin:0}
+h1{font-size:clamp(1.5rem,4vw,2.1rem);margin:6px 0 8px;color:var(--profundo)}
+.idiomas{display:flex;gap:8px;margin:12px 0 4px;flex-wrap:wrap}
+.idiomas button{background:#fff;color:var(--medio);border:2px solid var(--medio);border-radius:999px;padding:6px 14px;font:inherit;font-weight:700;cursor:pointer}
+.idiomas button.ativo{background:var(--medio);color:#fff}
+.aviso{background:#FFF4D6;border:1px solid #E8C872;border-radius:12px;padding:10px 14px;font-size:.9rem;margin-top:14px}
+h2{font-size:1.2rem;color:var(--profundo);margin:8px 0 10px;border-bottom:2px solid var(--nevoa);padding-bottom:6px}
+.quebra{height:18px;margin:40px 0 12px;border-radius:999px;background:linear-gradient(90deg,var(--azul),var(--medio) 60%,var(--profundo))}
+.quebra.alt{background:linear-gradient(90deg,var(--marinho),var(--profundo))}
+.item{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start;border:1px solid #D5E0EE;border-radius:14px;padding:12px 14px;margin-bottom:10px;background:#fff}
+.item input[type=checkbox]{width:20px;height:20px;margin-top:3px;accent-color:var(--medio)}
+.item b{display:block;color:var(--marinho);font-size:1.02rem}
+.item span.desc{font-size:1rem;color:#3B4F63}
+.cod{font-size:.75rem;font-weight:700;color:var(--medio);margin-right:6px}
+.opts{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.opt{display:flex;align-items:center;gap:6px;border:1px solid #AFC4DC;border-radius:999px;padding:5px 12px;font-size:.95rem;cursor:pointer}
+.opt input{width:16px;height:16px;accent-color:var(--medio)}
+.campo{width:100%;border:1px solid #AFC4DC;border-radius:8px;padding:9px 10px;font:inherit;margin-bottom:8px}
+textarea{width:100%;min-height:90px;border:1px solid #AFC4DC;border-radius:12px;padding:10px;font:inherit}
+.acoes{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0}
+button.acao,.btn{background:var(--medio);color:#fff;border:0;border-radius:999px;padding:11px 20px;font:inherit;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block}
+.btn.sec{background:#fff;color:var(--medio);border:2px solid var(--medio)}
+#saida{display:none;margin-top:12px}
+#msg{display:none;margin-top:10px}
+.rodape{background:var(--marinho);color:#C9D6E3;font-size:.85rem;padding:18px 16px;margin-top:40px;text-align:center}
+</style>
+</head>
+<body>
+<header class="topo"><div class="wrap">
+  <p class="eyebrow">The Ocean Blue · Proposta de serviços</p>
+  <h1 id="t-h1">Escolha os serviços que fazem sentido para você</h1>
+  <div class="idiomas">
+    <button type="button" data-l="pt" class="ativo">🇧🇷 Português</button>
+    <button type="button" data-l="es">🇨🇱 Español</button>
+  </div>
+  <p id="t-intro">Marque o que quer. Nos serviços de posts, carrosséis e stories, escolha a quantidade por mês. No fim, gere a mensagem e envie para a gente.</p>
+  <div class="aviso" id="t-aviso"><b>Versão de teste.</b> Descrições provisórias. Não há preços nesta página.</div>
+</div></header>
+
+<main class="wrap" id="lista"></main>
+
+<section class="wrap">
+  <h2 id="t-sec">Sua seleção</h2>
+  <label for="outros" id="t-outrosl"><b>Outros serviços que você precisa (não listados acima)</b></label>
+  <textarea id="outros"></textarea>
+  <br><br>
+  <label for="obs" id="t-obsl"><b>Observações (opcional)</b></label>
+  <textarea id="obs"></textarea>
+  <div class="acoes">
+    <button class="acao" id="gerar" type="button">Gerar mensagem</button>
+    <a class="btn sec" id="wa" href="https://wa.me/?text=" target="_blank" rel="noopener">Enviar pelo WhatsApp</a>
+  </div>
+  <textarea id="msg" readonly></textarea>
+  <p id="saida"></p>
+</section>
+
+<footer class="rodape" id="t-rodape">The Ocean Blue · estratégia, dados e criação · theoceanblue.com.br</footer>
+
+<script>
+const UI = {
+  pt: { h1:"Escolha os serviços que fazem sentido para você", intro:"Marque o que quer. Nos serviços de posts, carrosséis e stories, escolha a quantidade por mês. No fim, gere a mensagem e envie para a gente.", aviso:"<b>Versão de teste.</b> Descrições provisórias. Não há preços nesta página.", sec:"Sua seleção", outrosl:"<b>Outros serviços que você precisa (não listados acima)</b>", outrosph:"Descreva o que precisa. Vamos avaliar se conseguimos fazer.", obsl:"<b>Observações (opcional)</b>", obsph:"Ex.: prazo, dúvidas, contexto do negócio", gerar:"Gerar mensagem", wa:"Enviar pelo WhatsApp", pronta:"Mensagem pronta. Copie o texto abaixo ou use o botão do WhatsApp.", copiada:"Mensagem copiada. Cole no WhatsApp ou no e-mail, ou use o botão do WhatsApp.", saudacao:"Olá! Esta é a minha seleção de serviços:", nenhum:"(nenhum serviço marcado)", outros:"Outros serviços que preciso: ", obs:"Observações: ", livre:"Outras feiras em que você participa:", rodape:"The Ocean Blue · estratégia, dados e criação · theoceanblue.com.br" },
+  es: { h1:"Elija los servicios que tienen sentido para usted", intro:"Marque lo que le interesa. En los servicios de posts, carruseles y stories, elija la cantidad por mes. Al final, genere el mensaje y envíenoslo.", aviso:"<b>Versión de prueba.</b> Descripciones provisorias. Esta página no muestra precios.", sec:"Su selección", outrosl:"<b>Otros servicios que necesita (no listados arriba)</b>", outrosph:"Describa lo que necesita. Vamos a evaluar si podemos hacerlo.", obsl:"<b>Observaciones (opcional)</b>", obsph:"Ej.: plazo, dudas, contexto del negocio", gerar:"Generar mensaje", wa:"Enviar por WhatsApp", pronta:"Mensaje listo. Copie el texto de abajo o use el botón de WhatsApp.", copiada:"Mensaje copiado. Péguelo en WhatsApp o en el correo, o use el botón de WhatsApp.", saudacao:"¡Hola! Esta es mi selección de servicios:", nenhum:"(ningún servicio marcado)", outros:"Otros servicios que necesito: ", obs:"Observaciones: ", livre:"Otras ferias en las que usted participa:", rodape:"The Ocean Blue · estrategia, datos y creación · theoceanblue.com.br" }
+};
+
+const GRUPOS = {
+  pt: [
+    { titulo: "Marketing", nota: "Marketing digital e trade marketing (representantes, ponto de venda, distribuição e mercado).", itens: [
+      { c:"T1", n:"Gestão de campanhas Meta Ads", d:"Facebook e Instagram, com funil de topo, meio, fundo e remarketing." },
+      { c:"T2", n:"Gestão de Google Ads", d:"Campanhas de busca e de alcance no Google." },
+      { c:"T3", n:"Pixel, GA4 e Google Tag Manager", d:"Instalação, configuração e medição de conversões." },
+      { c:"T4", n:"Campanha de lançamento ou inauguração", d:"Alcance local com público definido." },
+      { c:"E4", n:"Otimização do Google Meu Negócio", d:"Auditoria e perfil da empresa no Google." }
+    ]},
+    { titulo: "Posicionamento e orientação de marca", itens: [
+      { c:"S5", n:"Posicionamento de marca", d:"Definição de posicionamento com metodologia própria." },
+      { c:"S2", n:"Diagnóstico de presença digital", d:"Leitura do site, do Instagram e do Google." },
+      { c:"S3", n:"Análise de concorrentes", d:"Comparação com dois concorrentes diretos." },
+      { c:"S1", n:"Estudo de mercado e de consumo", d:"Leitura de região, renda e potencial de consumo." }
+    ]},
+    { titulo: "Comunicação digital e conteúdo", itens: [
+      { c:"C1", n:"Gestão de redes sociais", d:"Feed e stories com agendamento." },
+      { c:"C2", n:"Criação de posts e stories", d:"Arte e texto para feed e stories.", opts:[4,8,16], unidade:"posts/mês" },
+      { c:"C3", n:"Carrosséis para Instagram", d:"Carrosséis com identidade da marca.", opts:[4,8,16], unidade:"carrosséis/mês" },
+      { c:"C4", n:"Calendário editorial e estratégia de conteúdo", d:"Planejamento mensal de publicações." },
+      { c:"F1", n:"Diária de fotos de produto", d:"Até 15 itens, com fotógrafo e direção de arte." },
+      { c:"F2", n:"Diária de captação de vídeo", d:"Reels e Shorts." },
+      { c:"F3", n:"Edição de vídeo", d:"Cortes rápidos, textos em caixa alta e logo em movimento." },
+      { c:"F4", n:"Cobertura em vídeo de evento", d:"Registro e edição de evento." },
+      { c:"S4", n:"Relatório de resultados de mídia", d:"Resumo de desempenho das campanhas." }
+    ]},
+    { titulo: "Vendas em marketplaces e varejo digital", itens: [
+      { c:"V1", n:"Gestão de loja e anúncios em marketplaces", d:"Cadastro, anúncios e acompanhamento de vendas no Mercado Livre, Amazon e Shopee." },
+      { c:"V2", n:"Google Shopping", d:"Feed de produtos e campanhas de compra no Google." },
+      { c:"V3", n:"Anúncios em apps de delivery e varejo", d:"Campanhas dentro de plataformas de pedido e de varejo digital." },
+      { c:"V4", n:"Descrições de produto e fichas técnicas", d:"Textos e fichas de produto para as lojas online." }
+    ]},
+    { titulo: "Receitas, blog e relacionamento", itens: [
+      { c:"R1", n:"Receitas em vídeo com o produto", d:"Vídeos curtos de receita usando o produto." },
+      { c:"R2", n:"Blog de receitas com SEO", d:"Artigos de receitas pensados para trazer visitas orgânicas ao site e às lojas." },
+      { c:"R3", n:"Influenciadores e parcerias com criadores", d:"Escolha de criadores e acompanhamento das parcerias." }
+    ]},
+    { titulo: "Feiras e eventos", livre: true, nota: "Marque as feiras em que a sua marca deve participar. Os meses são das edições de 2026 e serão atualizados para 2027 quando forem confirmados.", itens: [
+      { c:"FE1", n:"Super Rio Expofood", d:"Supermercados, food service, alimentos e bebidas. Março, Riocentro, Rio de Janeiro/RJ." },
+      { c:"FE2", n:"Anuga Select Brazil", d:"Alimentos e bebidas. Abril, São Paulo/SP." },
+      { c:"FE3", n:"APAS Show", d:"Varejo supermercadista, alimentos e bebidas. Maio, Expo Center Norte, São Paulo/SP." },
+      { c:"FE4", n:"Fispal Food Service e Fispal Sorvetes", d:"Food service, cafés, sorvetes e confeitaria. Maio, Distrito Anhembi, São Paulo/SP." },
+      { c:"FE5", n:"Bio Brazil Fair e Naturaltech", d:"Orgânicos, naturais, saudáveis, suplementos e veganos. Junho, Distrito Anhembi, São Paulo/SP." },
+      { c:"FE6", n:"ExpoSuper", d:"Varejo alimentar e supermercados. Junho, Expocentro, Balneário Camboriú/SC." },
+      { c:"FE7", n:"Fispal Tecnologia e TecnoCarne", d:"Processamento, automação, embalagem e logística para alimentos e bebidas. Junho, São Paulo Expo, São Paulo/SP." },
+      { c:"FE8", n:"FIPAN", d:"Panificação, confeitaria e food service. Julho, Expo Center Norte, São Paulo/SP." },
+      { c:"FE9", n:"Fi South America (FiSA)", d:"Ingredientes para alimentos, bebidas e suplementos. Agosto, São Paulo Expo, São Paulo/SP." },
+      { c:"FE10", n:"Expocachaça, Brasilbier e Minas + Doce", d:"Cachaça, cervejas especiais, doces, queijos, vinhos e azeites. Agosto, CenterMinas Expo, Belo Horizonte/MG." },
+      { c:"FE11", n:"Superminas Food Show", d:"Supermercados e panificação. Outubro, Expominas, Belo Horizonte/MG." },
+      { c:"FE12", n:"VegFest Brasil", d:"Evento vegano. Dezembro, local a confirmar." }
+    ]}
+  ],
+  es: [
+    { titulo: "Marketing", nota: "Marketing digital y trade marketing (representantes, punto de venta, distribución y mercado).", itens: [
+      { c:"T1", n:"Gestión de campañas Meta Ads", d:"Facebook e Instagram, con embudo de tope, medio, fondo y remarketing." },
+      { c:"T2", n:"Gestión de Google Ads", d:"Campañas de búsqueda y de alcance en Google." },
+      { c:"T3", n:"Píxel, GA4 y Google Tag Manager", d:"Instalación, configuración y medición de conversiones." },
+      { c:"T4", n:"Campaña de lanzamiento o inauguración", d:"Alcance local con público definido." },
+      { c:"E4", n:"Optimización de Google Mi Negocio", d:"Auditoría y perfil de la empresa en Google." }
+    ]},
+    { titulo: "Posicionamiento y orientación de marca", itens: [
+      { c:"S5", n:"Posicionamiento de marca", d:"Definición de posicionamiento con metodología propia." },
+      { c:"S2", n:"Diagnóstico de presencia digital", d:"Análisis del sitio, de Instagram y de Google." },
+      { c:"S3", n:"Análisis de competidores", d:"Comparación con dos competidores directos." },
+      { c:"S1", n:"Estudio de mercado y de consumo", d:"Lectura de región, ingresos y potencial de consumo." }
+    ]},
+    { titulo: "Comunicación digital y contenido", itens: [
+      { c:"C1", n:"Gestión de redes sociales", d:"Feed y stories con programación." },
+      { c:"C2", n:"Creación de posts y stories", d:"Arte y texto para feed y stories.", opts:[4,8,16], unidade:"posts/mes" },
+      { c:"C3", n:"Carruseles para Instagram", d:"Carruseles con identidad de marca.", opts:[4,8,16], unidade:"carruseles/mes" },
+      { c:"C4", n:"Calendario editorial y estrategia de contenido", d:"Planificación mensual de publicaciones." },
+      { c:"F1", n:"Jornada de fotos de producto", d:"Hasta 15 ítems, con fotógrafo y dirección de arte." },
+      { c:"F2", n:"Jornada de captación de video", d:"Reels y Shorts." },
+      { c:"F3", n:"Edición de video", d:"Cortes rápidos, textos en mayúsculas y logo en movimiento." },
+      { c:"F4", n:"Cobertura en video de evento", d:"Registro y edición de evento." },
+      { c:"S4", n:"Informe de resultados de medios", d:"Resumen de desempeño de las campañas." }
+    ]},
+    { titulo: "Ventas en marketplaces y comercio digital", itens: [
+      { c:"V1", n:"Gestión de tienda y anuncios en marketplaces", d:"Alta, anuncios y seguimiento de ventas en Mercado Libre, Amazon y Shopee." },
+      { c:"V2", n:"Google Shopping", d:"Feed de productos y campañas de compra en Google." },
+      { c:"V3", n:"Anuncios en apps de delivery y retail", d:"Campañas dentro de plataformas de pedidos y de comercio digital." },
+      { c:"V4", n:"Descripciones de producto y fichas técnicas", d:"Textos y fichas de producto para las tiendas online." }
+    ]},
+    { titulo: "Recetas, blog y relaciones", itens: [
+      { c:"R1", n:"Recetas en video con el producto", d:"Videos cortos de receta con el producto." },
+      { c:"R2", n:"Blog de recetas con SEO", d:"Artículos de recetas pensados para traer visitas orgánicas al sitio y a las tiendas." },
+      { c:"R3", n:"Influencers y alianzas con creadores", d:"Selección de creadores y seguimiento de las alianzas." }
+    ]},
+    { titulo: "Ferias y eventos", livre: true, nota: "Marque las ferias en las que su marca debe participar. Los meses corresponden a las ediciones de 2026 y se actualizarán a 2027 cuando estén confirmados.", itens: [
+      { c:"FE1", n:"Super Rio Expofood", d:"Supermercados, food service, alimentos y bebidas. Marzo, Riocentro, Río de Janeiro/RJ." },
+      { c:"FE2", n:"Anuga Select Brazil", d:"Alimentos y bebidas. Abril, São Paulo/SP." },
+      { c:"FE3", n:"APAS Show", d:"Retail supermercadista, alimentos y bebidas. Mayo, Expo Center Norte, São Paulo/SP." },
+      { c:"FE4", n:"Fispal Food Service e Fispal Sorvetes", d:"Food service, cafés, helados y pastelería. Mayo, Distrito Anhembi, São Paulo/SP." },
+      { c:"FE5", n:"Bio Brazil Fair e Naturaltech", d:"Orgánicos, naturales, saludables, suplementos y veganos. Junio, Distrito Anhembi, São Paulo/SP." },
+      { c:"FE6", n:"ExpoSuper", d:"Retail alimentario y supermercados. Junio, Expocentro, Balneário Camboriú/SC." },
+      { c:"FE7", n:"Fispal Tecnologia e TecnoCarne", d:"Procesamiento, automatización, envase y logística para alimentos y bebidas. Junio, São Paulo Expo, São Paulo/SP." },
+      { c:"FE8", n:"FIPAN", d:"Panadería, pastelería y food service. Julio, Expo Center Norte, São Paulo/SP." },
+      { c:"FE9", n:"Fi South America (FiSA)", d:"Ingredientes para alimentos, bebidas y suplementos. Agosto, São Paulo Expo, São Paulo/SP." },
+      { c:"FE10", n:"Expocachaça, Brasilbier e Minas + Doce", d:"Cachaça, cervezas especiales, dulces, quesos, vinos y aceites. Agosto, CenterMinas Expo, Belo Horizonte/MG." },
+      { c:"FE11", n:"Superminas Food Show", d:"Supermercados y panadería. Octubre, Expominas, Belo Horizonte/MG." },
+      { c:"FE12", n:"VegFest Brasil", d:"Evento vegano. Diciembre, lugar a confirmar." }
+    ]}
+  ]
+};
+
+let lang = "pt";
+const lista = document.getElementById("lista");
+
+function aplicarUI() {
+  const u = UI[lang];
+  document.documentElement.lang = lang === "pt" ? "pt-BR" : "es";
+  document.getElementById("t-h1").textContent = u.h1;
+  document.getElementById("t-intro").textContent = u.intro;
+  document.getElementById("t-aviso").innerHTML = u.aviso;
+  document.getElementById("t-sec").textContent = u.sec;
+  document.getElementById("t-outrosl").innerHTML = u.outrosl;
+  document.getElementById("outros").placeholder = u.outrosph;
+  document.getElementById("t-obsl").innerHTML = u.obsl;
+  document.getElementById("obs").placeholder = u.obsph;
+  document.getElementById("gerar").textContent = u.gerar;
+  document.getElementById("wa").textContent = u.wa;
+  document.getElementById("t-rodape").textContent = u.rodape;
+  document.querySelectorAll(".idiomas button").forEach(b => b.classList.toggle("ativo", b.dataset.l === lang));
+}
+
+function renderizar() {
+  lista.innerHTML = "";
+  let idx = 0;
+  GRUPOS[lang].forEach((g, gi) => {
+    const quebra = document.createElement("div"); quebra.className = "quebra" + (gi % 2 ? " alt" : ""); lista.appendChild(quebra);
+    const h = document.createElement("h2"); h.textContent = g.titulo; lista.appendChild(h);
+    if (g.nota) { const p = document.createElement("p"); p.textContent = g.nota; lista.appendChild(p); }
+    g.itens.forEach(it => {
+      const id = "i" + (idx++);
+      const row = document.createElement("div"); row.className = "item";
+      const cb = document.createElement("input"); cb.type = "checkbox"; cb.id = id; cb.dataset.c = it.c; cb.dataset.n = it.n;
+      const txt = document.createElement("div");
+      const b = document.createElement("b"); b.textContent = it.n;
+      const cod = document.createElement("span"); cod.className = "cod"; cod.textContent = it.c;
+      const s = document.createElement("span"); s.className = "desc"; s.textContent = it.d;
+      b.prepend(cod); txt.appendChild(b); txt.appendChild(s);
+      if (it.opts) {
+        const box = document.createElement("div"); box.className = "opts";
+        it.opts.forEach(v => {
+          const l = document.createElement("label"); l.className = "opt";
+          const o = document.createElement("input"); o.type = "checkbox"; o.id = id + "-" + v; o.dataset.v = String(v); o.dataset.parent = id; o.dataset.unidade = it.unidade;
+          const t = document.createElement("span"); t.textContent = v + " " + it.unidade;
+          l.appendChild(o); l.appendChild(t); box.appendChild(l);
+        });
+        txt.appendChild(box);
+      }
+      row.appendChild(cb); row.appendChild(txt);
+      lista.appendChild(row);
+    });
+    if (g.livre) {
+      const bloco = document.createElement("div"); bloco.style.margin = "14px 0";
+      const t = document.createElement("p"); t.textContent = UI[lang].livre; t.style.fontWeight = "700"; bloco.appendChild(t);
+      for (let k = 1; k <= 2; k++) { const inp = document.createElement("input"); inp.type = "text"; inp.id = "feira-livre-" + k; inp.className = "campo"; bloco.appendChild(inp); }
+      lista.appendChild(bloco);
+    }
+  });
+}
+
+function estado() {
+  return {
+    marcados: Array.from(document.querySelectorAll('#lista input[data-c]')).filter(c => c.checked).map(c => c.id),
+    opcoes: Array.from(document.querySelectorAll('#lista input[data-v]')).filter(o => o.checked).map(o => o.id),
+    livre: [1,2].map(k => { const e = document.getElementById("feira-livre-" + k); return e ? e.value : ""; }),
+    outros: document.getElementById("outros").value,
+    obs: document.getElementById("obs").value
+  };
+}
+
+function restaurar(s) {
+  s.marcados.forEach(id => { const e = document.getElementById(id); if (e) e.checked = true; });
+  s.opcoes.forEach(id => { const e = document.getElementById(id); if (e) e.checked = true; });
+  s.livre.forEach((v, i) => { const e = document.getElementById("feira-livre-" + (i + 1)); if (e) e.value = v; });
+  document.getElementById("outros").value = s.outros;
+  document.getElementById("obs").value = s.obs;
+}
+
+function selecao() {
+  const itens = [];
+  document.querySelectorAll('#lista input[type=checkbox][data-c]').forEach(cb => {
+    if (!cb.checked) return;
+    const opcoes = Array.from(document.querySelectorAll('#lista input[data-parent="' + cb.id + '"]')).filter(o => o.checked);
+    itens.push({ codigo: cb.dataset.c, servico: cb.dataset.n, quantidades: opcoes.map(o => o.dataset.v), unidade: opcoes.length ? opcoes[0].dataset.unidade : null });
+  });
+  for (let k = 1; k <= 2; k++) { const v = document.getElementById("feira-livre-" + k); if (v && v.value.trim()) itens.push({ codigo: "FE-outra", servico: v.value.trim(), quantidades: [], unidade: null }); }
+  return itens;
+}
+
+function montarMensagem() {
+  const itens = selecao();
+  const outros = document.getElementById("outros").value.trim();
+  const obs = document.getElementById("obs").value.trim();
+  let t = UI[lang].saudacao + "\n\n";
+  if (!itens.length) t += UI[lang].nenhum + "\n";
+  itens.forEach(i => {
+    t += "- " + i.codigo + " " + i.servico + (i.quantidades.length ? " — " + i.quantidades.join(", ") + " " + i.unidade : "") + "\n";
+  });
+  if (outros) t += "\n" + UI[lang].outros + outros + "\n";
+  if (obs) t += "\n" + UI[lang].obs + obs + "\n";
+  return t;
+}
+
+document.querySelectorAll(".idiomas button").forEach(b => b.addEventListener("click", () => {
+  if (b.dataset.l === lang) return;
+  const s = estado();
+  lang = b.dataset.l;
+  renderizar(); restaurar(s); aplicarUI();
+  document.getElementById("msg").style.display = "none";
+  document.getElementById("saida").style.display = "none";
+}));
+
+document.getElementById("gerar").addEventListener("click", () => {
+  const msg = montarMensagem();
+  const area = document.getElementById("msg");
+  area.style.display = "block"; area.value = msg;
+  document.getElementById("wa").href = "https://wa.me/?text=" + encodeURIComponent(msg);
+  const saida = document.getElementById("saida"); saida.style.display = "block";
+  saida.textContent = UI[lang].pronta;
+  try { navigator.clipboard.writeText(msg).then(() => { saida.textContent = UI[lang].copiada; }).catch(() => {}); } catch (e) {}
+  area.select();
+});
+
+renderizar();
+aplicarUI();
+</script>
+</body>
+</html>
