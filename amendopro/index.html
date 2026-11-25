@@ -34,7 +34,25 @@ button.acao,.btn{background:var(--medio);color:#fff;border:0;border-radius:999px
 .btn.sec{background:#fff;color:var(--medio);border:2px solid var(--medio)}
 #saida{display:none;margin-top:12px}
 #msg{display:none;margin-top:10px}
-.rodape{background:var(--marinho);color:#C9D6E3;font-size:.85rem;padding:18px 16px;margin-top:40px;text-align:center}
+.sig{background:#17324A;color:#fff;border-top:6px solid #669DCF;margin-top:40px}
+.sigw{padding-top:clamp(32px,6vw,56px);padding-bottom:clamp(32px,6vw,56px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:clamp(16px,4vw,48px);align-items:start}
+@media(max-width:760px){.sigw{grid-template-columns:1fr}}
+.sig .marca{display:block;font-size:1.3rem;font-weight:700;color:#fff;margin-bottom:14px}
+.sig h2{font-size:clamp(1.3rem,3vw,1.9rem);color:#fff;margin:6px 0 0;border:0;padding:0}
+.sig .eyebrow{font-size:.78rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#9CC3E8;margin:0}
+.sig .tx{color:#DCE6F1;font-size:clamp(.98rem,1.6vw,1.1rem);line-height:1.65;margin:0}
+.sig .pil{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}
+@media(max-width:560px){.sig .pil{grid-template-columns:1fr}}
+.sig .pil div{border:1px solid #2E4C68;border-radius:14px;padding:14px 16px;display:grid;gap:4px}
+.sig .pil b{color:#9CC3E8;font-size:.95rem}
+.sig .pil span{color:#DCE6F1;font-size:.9rem;line-height:1.5}
+.sig .who{margin-top:16px;font-size:.88rem;color:#A9BACB}
+.sig .who b{color:#fff}
+footer.ob{background:#17324A;color:#C9D6E3;font-size:.85rem}
+.obw{padding-top:22px;padding-bottom:22px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;border-top:1px solid #2A4763}
+.obw span:last-child{text-align:right}
+footer.ob a{color:#fff;font-weight:700;text-decoration:none;border-bottom:1px solid #669DCF}
+@media(max-width:640px){.obw{grid-template-columns:1fr;text-align:center}.obw span:last-child{text-align:center}}
 </style>
 </head>
 <body>
@@ -46,7 +64,6 @@ button.acao,.btn{background:var(--medio);color:#fff;border:0;border-radius:999px
     <button type="button" data-l="es">🇨🇱 Español</button>
   </div>
   <p id="t-intro">Marque o que quer. Nos serviços de posts, carrosséis e stories, escolha a quantidade por mês. No fim, gere a mensagem e envie para a gente.</p>
-  <div class="aviso" id="t-aviso"><b>Versão de teste.</b> Descrições provisórias. Não há preços nesta página.</div>
 </div></header>
 
 <main class="wrap" id="lista"></main>
@@ -66,12 +83,27 @@ button.acao,.btn{background:var(--medio);color:#fff;border:0;border-radius:999px
   <p id="saida"></p>
 </section>
 
-<footer class="rodape" id="t-rodape">The Ocean Blue · estratégia, dados e criação · theoceanblue.com.br</footer>
+<aside class="sig"><div class="wrap sigw">
+  <div class="brand">
+    <span class="marca">The Ocean Blue</span>
+    <p class="eyebrow" id="t-sig-eb">Estratégia e criação</p>
+    <h2 id="t-sig-h">DNA The Ocean Blue</h2>
+  </div>
+  <div>
+    <p class="tx" id="t-sig-tx">Esta proposta nasceu da leitura do seu mercado e do comportamento de compra do consumidor. Esse é o jeito The Ocean Blue de trabalhar: unir a leitura do território e do consumidor à criação que transforma essa leitura em imagem, vídeo e conteúdo.</p>
+    <div class="pil">
+      <div><b id="t-sig-p1t">Inteligência de mercado</b><span id="t-sig-p1">Metodologia de geomarketing da nossa trajetória em estudos de expansão para grandes redes.</span></div>
+      <div><b id="t-sig-p2t">Criação e audiovisual</b><span id="t-sig-p2">Direção criativa, vídeo e redes sociais que transformam a ideia em experiência e divulgação.</span></div>
+    </div>
+    <p class="who" id="t-sig-who"><b>Luiz Fernando</b> · estratégia e inteligência de mercado &nbsp;|&nbsp; <b>Elaine Lazari</b> · criação, audiovisual e mídias sociais</p>
+  </div>
+</div></aside>
+<footer class="ob"><div class="wrap obw"><span>AmendoPRO</span><a href="https://theoceanblue.com.br" target="_blank" rel="noopener">theoceanblue.com.br</a><span id="t-sig-foot">The Ocean Blue · estratégia, dados e criação</span></div></footer>
 
 <script>
 const UI = {
-  pt: { h1:"Escolha os serviços que fazem sentido para você", intro:"Marque o que quer. Nos serviços de posts, carrosséis e stories, escolha a quantidade por mês. No fim, gere a mensagem e envie para a gente.", aviso:"<b>Versão de teste.</b> Descrições provisórias. Não há preços nesta página.", sec:"Sua seleção", outrosl:"<b>Outros serviços que você precisa (não listados acima)</b>", outrosph:"Descreva o que precisa. Vamos avaliar se conseguimos fazer.", obsl:"<b>Observações (opcional)</b>", obsph:"Ex.: prazo, dúvidas, contexto do negócio", gerar:"Gerar mensagem", wa:"Enviar pelo WhatsApp", pronta:"Mensagem pronta. Copie o texto abaixo ou use o botão do WhatsApp.", copiada:"Mensagem copiada. Cole no WhatsApp ou no e-mail, ou use o botão do WhatsApp.", saudacao:"Olá! Esta é a minha seleção de serviços:", nenhum:"(nenhum serviço marcado)", outros:"Outros serviços que preciso: ", obs:"Observações: ", livre:"Outras feiras em que você participa:", rodape:"The Ocean Blue · estratégia, dados e criação · theoceanblue.com.br" },
-  es: { h1:"Elija los servicios que tienen sentido para usted", intro:"Marque lo que le interesa. En los servicios de posts, carruseles y stories, elija la cantidad por mes. Al final, genere el mensaje y envíenoslo.", aviso:"<b>Versión de prueba.</b> Descripciones provisorias. Esta página no muestra precios.", sec:"Su selección", outrosl:"<b>Otros servicios que necesita (no listados arriba)</b>", outrosph:"Describa lo que necesita. Vamos a evaluar si podemos hacerlo.", obsl:"<b>Observaciones (opcional)</b>", obsph:"Ej.: plazo, dudas, contexto del negocio", gerar:"Generar mensaje", wa:"Enviar por WhatsApp", pronta:"Mensaje listo. Copie el texto de abajo o use el botón de WhatsApp.", copiada:"Mensaje copiado. Péguelo en WhatsApp o en el correo, o use el botón de WhatsApp.", saudacao:"¡Hola! Esta es mi selección de servicios:", nenhum:"(ningún servicio marcado)", outros:"Otros servicios que necesito: ", obs:"Observaciones: ", livre:"Otras ferias en las que usted participa:", rodape:"The Ocean Blue · estrategia, datos y creación · theoceanblue.com.br" }
+  pt: { h1:"Escolha os serviços que fazem sentido para você", intro:"Marque o que quer. Nos serviços de posts, carrosséis e stories, escolha a quantidade por mês. No fim, gere a mensagem e envie para a gente.", sec:"Sua seleção", sigeb:"Estratégia e criação", sigfoot:"The Ocean Blue · estratégia, dados e criação", sigh:"DNA The Ocean Blue", sigtx:"Esta proposta nasceu da leitura do seu mercado e do comportamento de compra do consumidor. Esse é o jeito The Ocean Blue de trabalhar: unir a leitura do território e do consumidor à criação que transforma essa leitura em imagem, vídeo e conteúdo.", sigp1t:"Inteligência de mercado", sigp1:"Metodologia de geomarketing da nossa trajetória em estudos de expansão para grandes redes.", sigp2t:"Criação e audiovisual", sigp2:"Direção criativa, vídeo e redes sociais que transformam a ideia em experiência e divulgação.", sigwho:"<b>Luiz Fernando</b> · estratégia e inteligência de mercado &nbsp;|&nbsp; <b>Elaine Lazari</b> · criação, audiovisual e mídias sociais", outrosl:"<b>Outros serviços que você precisa (não listados acima)</b>", outrosph:"Descreva o que precisa. Vamos avaliar se conseguimos fazer.", obsl:"<b>Observações (opcional)</b>", obsph:"Ex.: prazo, dúvidas, contexto do negócio", gerar:"Gerar mensagem", wa:"Enviar pelo WhatsApp", pronta:"Mensagem pronta. Copie o texto abaixo ou use o botão do WhatsApp.", copiada:"Mensagem copiada. Cole no WhatsApp ou no e-mail, ou use o botão do WhatsApp.", saudacao:"Olá! Esta é a minha seleção de serviços:", nenhum:"(nenhum serviço marcado)", outros:"Outros serviços que preciso: ", obs:"Observações: ", livre:"Outras feiras em que você participa:", rodape:"The Ocean Blue · estratégia, dados e criação · theoceanblue.com.br" },
+  es: { h1:"Elija los servicios que tienen sentido para usted", intro:"Marque lo que le interesa. En los servicios de posts, carruseles y stories, elija la cantidad por mes. Al final, genere el mensaje y envíenoslo.", sec:"Su selección", sigeb:"Estrategia y creación", sigfoot:"The Ocean Blue · estrategia, datos y creación", sigh:"ADN The Ocean Blue", sigtx:"Esta propuesta nace de leer su mercado y el comportamiento de compra del consumidor. Así trabaja The Ocean Blue: une la lectura del territorio y del consumidor con la creación que convierte esa lectura en imagen, video y contenido.", sigp1t:"Inteligencia de mercado", sigp1:"Metodología de geomarketing de nuestra trayectoria en estudios de expansión para grandes cadenas.", sigp2t:"Creación y audiovisual", sigp2:"Dirección creativa, video y redes sociales que convierten la idea en experiencia y difusión.", sigwho:"<b>Luiz Fernando</b> · estrategia e inteligencia de mercado &nbsp;|&nbsp; <b>Elaine Lazari</b> · creación, audiovisual y redes sociales", outrosl:"<b>Otros servicios que necesita (no listados arriba)</b>", outrosph:"Describa lo que necesita. Vamos a evaluar si podemos hacerlo.", obsl:"<b>Observaciones (opcional)</b>", obsph:"Ej.: plazo, dudas, contexto del negocio", gerar:"Generar mensaje", wa:"Enviar por WhatsApp", pronta:"Mensaje listo. Copie el texto de abajo o use el botón de WhatsApp.", copiada:"Mensaje copiado. Péguelo en WhatsApp o en el correo, o use el botón de WhatsApp.", saudacao:"¡Hola! Esta es mi selección de servicios:", nenhum:"(ningún servicio marcado)", outros:"Otros servicios que necesito: ", obs:"Observaciones: ", livre:"Otras ferias en las que usted participa:", rodape:"The Ocean Blue · estrategia, datos y creación · theoceanblue.com.br" }
 };
 
 const GRUPOS = {
@@ -187,7 +219,6 @@ function aplicarUI() {
   document.documentElement.lang = lang === "pt" ? "pt-BR" : "es";
   document.getElementById("t-h1").textContent = u.h1;
   document.getElementById("t-intro").textContent = u.intro;
-  document.getElementById("t-aviso").innerHTML = u.aviso;
   document.getElementById("t-sec").textContent = u.sec;
   document.getElementById("t-outrosl").innerHTML = u.outrosl;
   document.getElementById("outros").placeholder = u.outrosph;
@@ -195,7 +226,15 @@ function aplicarUI() {
   document.getElementById("obs").placeholder = u.obsph;
   document.getElementById("gerar").textContent = u.gerar;
   document.getElementById("wa").textContent = u.wa;
-  document.getElementById("t-rodape").textContent = u.rodape;
+  document.getElementById("t-sig-eb").textContent = u.sigeb;
+  document.getElementById("t-sig-foot").textContent = u.sigfoot;
+  document.getElementById("t-sig-h").textContent = u.sigh;
+  document.getElementById("t-sig-tx").textContent = u.sigtx;
+  document.getElementById("t-sig-p1t").textContent = u.sigp1t;
+  document.getElementById("t-sig-p1").textContent = u.sigp1;
+  document.getElementById("t-sig-p2t").textContent = u.sigp2t;
+  document.getElementById("t-sig-p2").textContent = u.sigp2;
+  document.getElementById("t-sig-who").innerHTML = u.sigwho;
   document.querySelectorAll(".idiomas button").forEach(b => b.classList.toggle("ativo", b.dataset.l === lang));
 }
 
