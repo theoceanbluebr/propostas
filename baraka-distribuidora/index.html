@@ -1,0 +1,596 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Baraka × The Ocean Blue</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap">
+<style>
+:root{--bg:#FFFAF0;--card:#fff;--ink:#22160B;--mute:#7C6A56;--brown:#2A1707;--green:#6BA53A;--gold:#F2A93B;--cream:#FFE9C2;--rest:#F0713A;--deli:#7FC043;--perf:#A99C8C;--shadow:0 24px 60px -34px rgba(42,23,7,.45);color-scheme:light}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 "Plus Jakarta Sans",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--brown)}
+img{max-width:100%;display:block}
+h1,h2,h3{font-family:"Outfit","Plus Jakarta Sans",sans-serif;margin:0;line-height:1.02;letter-spacing:-.02em;text-wrap:balance}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:#B9741A}
+.eyebrow::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 4px rgba(242,169,59,.25)}
+.dark .eyebrow{color:var(--gold)}
+/* reveal */
+.js .rv{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+.js .rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.js .rv{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+/* nav */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(42,23,7,.86);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.08)}
+.nav .wrap{display:flex;align-items:center;gap:16px;height:60px}
+.nav .brand{display:flex;align-items:center;gap:10px;color:#fff;font-family:"Outfit";font-weight:700;font-size:1.15rem;margin-right:auto}
+.nav .brand img{width:34px;height:34px;border-radius:50%;border:2px solid var(--gold);background:#fff}
+.nav .links{display:flex;gap:6px}
+.nav .links button{all:unset;cursor:pointer;color:#EBDDC6;font-weight:600;font-size:.9rem;padding:7px 14px;border-radius:999px}
+.nav .links button:hover{background:rgba(255,255,255,.1);color:#fff}
+@media(max-width:760px){.nav .links{display:none}}
+.flags{display:flex;gap:8px}
+.flag{all:unset;display:block;cursor:pointer;width:34px;height:34px;border-radius:50%;overflow:hidden;position:relative;box-shadow:0 0 0 2px rgba(255,255,255,.25);transition:transform .2s,box-shadow .2s;opacity:.6}
+.flag svg{width:100%;height:100%;display:block}
+.flag:hover{transform:scale(1.08);opacity:1}
+.flag[aria-pressed="true"]{opacity:1;box-shadow:0 0 0 3px var(--gold)}
+.flag:focus-visible,.lang:focus-visible{outline:3px solid #fff;outline-offset:2px}
+/* hero */
+.hero{position:relative;overflow:hidden;color:#fff;padding-block:clamp(48px,9vw,110px) clamp(60px,10vw,120px);background:radial-gradient(900px 480px at 90% -8%,rgba(242,169,59,.42),transparent 62%),radial-gradient(800px 520px at -5% 105%,rgba(107,165,58,.42),transparent 60%),#1D1005}
+.hero .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.10;filter:blur(3px) saturate(1.2)}
+.hero .wrap{position:relative;display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:clamp(24px,5vw,60px);align-items:center}
+@media(max-width:900px){.hero .wrap{grid-template-columns:1fr}}
+.logo{width:clamp(76px,12vw,104px);border-radius:50%;border:4px solid var(--gold);background:#fff;margin-bottom:22px;box-shadow:0 0 0 10px rgba(242,169,59,.16)}
+.hero h1{font-size:clamp(2.9rem,9vw,6rem);font-weight:800;margin-top:14px}
+.hero h1 em{font-style:normal;background:linear-gradient(90deg,#FFD58A,#F2A93B 55%,#B7DE86);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p.sub{margin:18px 0 0;max-width:46ch;color:#EBDDC6;font-size:clamp(1.02rem,2vw,1.22rem)}
+.ar{font-size:.5em;vertical-align:.7em;margin-left:.3em;color:var(--gold);font-weight:600}
+.pick{margin-top:30px}
+.pick small{display:block;color:#CDBB9F;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700;margin-bottom:10px}
+.pick .row{display:flex;flex-wrap:wrap;gap:10px}
+.lang{all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:10px;padding:8px 18px 8px 8px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);color:#fff;font-weight:600;transition:background .2s,transform .2s}
+.lang:hover{background:rgba(255,255,255,.16);transform:translateY(-2px)}
+.lang[aria-pressed="true"]{background:#fff;color:var(--brown);border-color:#fff}
+.lang .flag{width:30px;height:30px;box-shadow:none;opacity:1;pointer-events:none}
+.glass{display:grid;gap:14px}
+.stat{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-radius:26px;padding:18px 22px;display:flex;align-items:center;gap:16px}
+.stat:nth-child(1){transform:rotate(-1.5deg)}.stat:nth-child(2){transform:translateX(24px) rotate(1deg)}.stat:nth-child(3){transform:rotate(-.8deg)}
+@media(max-width:900px){.stat:nth-child(n){transform:none}}
+.stat b{font-family:"Outfit";font-size:2.4rem;line-height:1;background:linear-gradient(90deg,#FFD58A,#F2A93B);-webkit-background-clip:text;background-clip:text;color:transparent;white-space:nowrap}
+.stat span{color:#EBDDC6;font-size:.95rem;line-height:1.3}
+/* sections */
+section.part{padding-block:clamp(56px,9vw,110px)}
+section.soft{background:linear-gradient(180deg,#FFF3DB,#FFFAF0)}
+.head{margin-bottom:34px;max-width:720px}
+.head h2{font-size:clamp(2.1rem,6vw,3.8rem);font-weight:800;margin-top:12px}
+.head p{margin:14px 0 0;color:var(--mute);font-size:1.08rem}
+/* bento */
+.bento{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:18px}
+.c7{grid-column:span 7}.c5{grid-column:span 5}.c12{grid-column:span 12}
+@media(max-width:900px){.c7,.c5{grid-column:span 12}}
+.card{background:var(--card);border-radius:30px;overflow:hidden;box-shadow:var(--shadow);display:grid;grid-template-rows:auto 1fr;margin:0}
+.card .im{position:relative;background:#F4E9D5}
+.card .im img{width:100%;height:auto}
+.pill{position:absolute;left:14px;top:14px;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-radius:999px;padding:7px 15px;font-family:"Outfit";font-weight:700;font-size:1.05rem;color:var(--brown);box-shadow:0 8px 20px -10px rgba(0,0,0,.4)}
+.card .tx{padding:20px 24px 24px;display:grid;gap:8px;align-content:start}
+.card h3{font-size:1.6rem}
+.card .st{color:var(--mute);font-size:.9rem;font-weight:600}
+.card p{margin:0;font-size:1rem}
+.tag{justify-self:start;font-weight:700;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;border-radius:999px;padding:5px 12px}
+.t-good{background:#E4F3D4;color:#3C6B16}.t-mid{background:#FFEBC7;color:#8A5600}.t-low{background:#FFE0D3;color:#A63E10}
+.card.wide{grid-template-columns:minmax(0,.55fr) minmax(0,1fr);grid-template-rows:none}
+.card.wide .im{display:grid;place-items:center;padding:18px}
+.card.wide .im img{max-width:260px;border-radius:18px;box-shadow:0 16px 36px -20px rgba(0,0,0,.5)}
+.card.wide .tx{align-content:center;padding:28px}
+@media(max-width:700px){.card.wide{grid-template-columns:1fr}}
+.trio{margin-top:18px;border-radius:34px;background:linear-gradient(120deg,#2A1707 0%,#3B2410 55%,#3E5A1F 130%);color:#fff;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));overflow:hidden}
+@media(max-width:800px){.trio{grid-template-columns:1fr}}
+.trio>div{padding:clamp(22px,3.5vw,36px);border-right:1px solid rgba(255,255,255,.1)}
+.trio>div:last-child{border-right:0}
+@media(max-width:800px){.trio>div{border-right:0;border-bottom:1px solid rgba(255,255,255,.1)}.trio>div:last-child{border-bottom:0}}
+.trio h3{font-size:2rem;background:linear-gradient(90deg,#FFD58A,#F2A93B);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:10px}
+.trio p{margin:0;color:#EBDDC6}
+/* map */
+.mapgrid{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);gap:18px;align-items:stretch}
+@media(max-width:900px){.mapgrid{grid-template-columns:1fr}}
+.mapbox{border-radius:32px;overflow:hidden;background:#24140A;box-shadow:var(--shadow)}
+.mapbox svg{width:100%;height:auto;display:block}
+.pin{filter:drop-shadow(0 0 7px currentColor)}
+.list{background:var(--card);border-radius:32px;padding:12px;box-shadow:var(--shadow);display:flex;flex-direction:column}
+.list ol{list-style:none;margin:0;padding:0}
+.list li{display:grid;grid-template-columns:30px minmax(0,1fr) auto;gap:12px;align-items:center;padding:11px 14px;border-radius:18px;transition:background .2s}
+.list li:hover{background:#FFF3DB}
+.dot{width:28px;height:28px;border-radius:50%;color:#fff;font-weight:700;font-size:.8rem;display:grid;place-items:center}
+.list small{display:block;color:var(--mute);font-size:.78rem}
+.list .km{font-family:"Outfit";font-weight:700;font-size:1.25rem;color:var(--brown);white-space:nowrap}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;padding:14px 16px 8px;font-size:.8rem;color:var(--mute);margin-top:auto}
+.legend i{display:inline-block;width:11px;height:11px;border-radius:50%;margin-right:6px;vertical-align:-1px}
+.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:18px}
+@media(max-width:800px){.facts{grid-template-columns:1fr}}
+.fact{background:var(--card);border-radius:28px;padding:24px;box-shadow:var(--shadow);color:var(--mute)}
+.fact b{display:block;font-family:"Outfit";font-weight:800;font-size:3.6rem;line-height:1;margin-bottom:6px;background:linear-gradient(90deg,#4F8A24,#F2A93B);-webkit-background-clip:text;background-clip:text;color:transparent}
+.src{font-size:.78rem;color:var(--mute);margin-top:16px}
+/* plan */
+.plan{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;position:relative}
+@media(max-width:860px){.plan{grid-template-columns:1fr}}
+.pc{background:var(--card);border-radius:32px;padding:28px;box-shadow:var(--shadow);display:grid;gap:12px;align-content:start;position:relative;overflow:hidden}
+.pc .num{position:absolute;right:20px;top:6px;font-family:"Outfit";font-weight:800;font-size:5.5rem;line-height:1;color:rgba(242,169,59,.16)}
+.ic{width:64px;height:64px;border-radius:22px;display:grid;place-items:center;background:linear-gradient(135deg,#7DBB45,#F2A93B)}
+.ic svg{width:34px;height:34px}
+.pc h3{font-size:1.9rem}
+.pc p{margin:0;color:var(--mute)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+.chips span{background:#FFF1D6;border-radius:999px;padding:5px 14px;font-size:.84rem;font-weight:700;color:#6B4311}
+.flow{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:12px;margin-top:30px;font-family:"Outfit";font-weight:700;font-size:1.25rem}
+.flow .b{background:var(--brown);color:#fff;border-radius:999px;padding:10px 24px}
+.flow .a{color:var(--gold);font-size:1.6rem}
+/* invest */
+.mods{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+@media(max-width:760px){.mods{grid-template-columns:1fr}}
+.mod{all:unset;box-sizing:border-box;cursor:pointer;background:var(--card);border-radius:30px;padding:26px;box-shadow:var(--shadow);display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px 18px;align-items:start;border:2px solid transparent;transition:border-color .25s,background .25s,transform .2s}
+.mod:hover{transform:translateY(-3px)}
+.mod:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.mod[aria-checked="true"]{border-color:var(--green);background:linear-gradient(160deg,#fff 40%,#F1F9E6)}
+.mod h3{font-size:1.65rem}
+.mod p{margin:6px 0 0;color:var(--mute);font-size:.96rem;grid-column:1}
+.mod .price{grid-column:1/-1;font-family:"Outfit";font-weight:800;font-size:2.5rem;line-height:1;color:var(--brown);margin-top:8px}
+.mod .price small{font-family:"Plus Jakarta Sans";font-weight:600;font-size:.85rem;color:var(--mute);margin-left:8px}
+.sw{display:block;width:56px;height:32px;border-radius:999px;background:#E5DACA;position:relative;transition:background .25s;flex:none}
+.sw::after{content:"";position:absolute;top:3px;left:3px;width:26px;height:26px;border-radius:50%;background:#fff;box-shadow:0 3px 8px rgba(0,0,0,.25);transition:transform .25s cubic-bezier(.2,.8,.2,1)}
+.mod[aria-checked="true"] .sw{background:var(--green)}
+.mod[aria-checked="true"] .sw::after{transform:translateX(24px)}
+
+.mod.on,.mod[aria-checked="true"]{border-color:var(--green);background:linear-gradient(160deg,#fff 40%,#F1F9E6)}
+.mod.c2{align-content:start}
+.mh{grid-column:1/-1;display:flex;justify-content:space-between;align-items:flex-start;gap:14px}
+.mod.c2>p{grid-column:1/-1;margin:0}
+.swb{all:unset;display:block;cursor:pointer;flex:none}
+.swb:focus-visible,.seg button:focus-visible,.half:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.swb[aria-checked="true"] .sw,.half[aria-checked="true"] .sw{background:var(--green)}
+.swb[aria-checked="true"] .sw::after,.half[aria-checked="true"] .sw::after{transform:translateX(24px)}
+.pickl{grid-column:1/-1;font-weight:700;font-size:.82rem;color:var(--mute);letter-spacing:.02em;margin-top:2px}
+.seg{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.seg button{all:unset;box-sizing:border-box;cursor:pointer;text-align:center;padding:12px 4px;border-radius:16px;background:#F4EBDC;font-family:"Outfit";font-weight:700;font-size:1.1rem;color:var(--brown);transition:background .2s,color .2s,transform .15s}
+.seg button:hover{transform:translateY(-2px)}
+.seg button[aria-checked="true"]{background:var(--brown);color:#fff}
+.halves{grid-column:1/-1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.half{all:unset;box-sizing:border-box;cursor:pointer;border-radius:22px;border:2px solid #EADFCB;padding:14px 16px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 10px;align-items:center;transition:border-color .25s,background .25s}
+.half[aria-checked="true"]{border-color:var(--green);background:#F1F9E6}
+.half .hn{font-family:"Outfit";font-weight:700;font-size:1.35rem}
+.half .hp{grid-column:1/-1;font-family:"Outfit";font-weight:800;font-size:1.8rem;line-height:1;color:var(--brown)}
+.half .hp small{font-family:"Plus Jakarta Sans";font-weight:600;font-size:.78rem;color:var(--mute);margin-left:6px}
+.cafe{margin-top:18px;border-radius:36px;padding:clamp(26px,5vw,52px);display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(18px,4vw,40px);align-items:center;color:#fff;background:radial-gradient(600px 300px at 100% 0%,rgba(242,169,59,.45),transparent 60%),linear-gradient(120deg,#2A1707,#4A2D12);box-shadow:0 30px 60px -30px rgba(42,23,7,.7)}
+.cafe .cup{width:clamp(72px,12vw,110px);height:clamp(72px,12vw,110px);border-radius:32px;background:linear-gradient(135deg,#FFD58A,#F2A93B);display:grid;place-items:center}
+.cafe .cup svg{width:58%;height:58%}
+.cafe h3{font-size:clamp(1.9rem,5vw,3.2rem);font-weight:800}
+.cafe p{margin:12px 0 0;color:#F0E2C8;font-size:clamp(1.05rem,2vw,1.3rem);max-width:56ch}
+@media(max-width:560px){.cafe{grid-template-columns:1fr}}
+.total{position:sticky;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:5;margin-top:22px;border-radius:30px;padding:clamp(18px,3vw,28px) clamp(20px,4vw,38px);color:#fff;background:linear-gradient(120deg,rgba(42,23,7,.96),rgba(62,40,16,.96));backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 30px 60px -24px rgba(42,23,7,.7);display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 28px}
+@media(max-width:560px){.total{gap:10px 14px}}
+.total .k{font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:700}
+.total .v{font-family:"Outfit";font-weight:800;font-size:clamp(1.9rem,6vw,3.4rem);line-height:1.05;margin-top:2px;white-space:nowrap}
+.total .s{color:#D9C9AE;font-size:.82rem;margin-top:4px;line-height:1.3}
+.notes{margin:26px 0 0;padding:0;list-style:none;display:grid;gap:8px;color:var(--mute);font-size:.94rem}
+.notes li::before{content:"•";color:var(--gold);font-weight:800;margin-right:10px}
+.next{margin-top:24px;border-radius:26px;padding:22px 28px;font-family:"Outfit";font-weight:700;font-size:1.3rem;color:var(--brown);background:linear-gradient(120deg,#FFE3A8,#E5F3C9)}
+/* DNA */
+.sig{background:#17324A;color:#fff;border-top:6px solid #669DCF}
+.sig .wrap{padding-block:clamp(36px,6vw,60px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:clamp(16px,4vw,48px);align-items:start}
+@media(max-width:760px){.sig .wrap{grid-template-columns:1fr}}
+.sig .brandb img{width:min(220px,70%);height:auto;display:block;margin-bottom:14px}
+.sig h2{font-size:clamp(1.4rem,3vw,2rem);color:#fff;margin:6px 0 0}
+.sig .eyebrow{color:#9CC3E8}.sig .eyebrow::before{background:#669DCF;box-shadow:none}
+.sig .tx2{color:#DCE6F1;font-size:clamp(.98rem,1.6vw,1.08rem);line-height:1.65;margin:0}
+.sig .pil{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}
+@media(max-width:560px){.sig .pil{grid-template-columns:1fr}}
+.sig .pil div{border:1px solid #2E4C68;border-radius:20px;padding:16px 18px;display:grid;gap:4px}
+.sig .pil b{color:#9CC3E8;font-size:.95rem}
+.sig .pil span{color:#DCE6F1;font-size:.9rem;line-height:1.5}
+.sig .who{margin-top:16px;font-size:.88rem;color:#A9BACB}
+.sig .who b{color:#fff}
+footer.ob{background:#17324A;color:#C9D6E3;font-size:.85rem}
+footer.ob .wrap{padding-block:22px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;border-top:1px solid #2A4763}
+footer.ob span:last-child{text-align:right}
+footer.ob a{color:#fff;font-weight:700;text-decoration:none;border-bottom:1px solid #669DCF}
+@media(max-width:640px){footer.ob .wrap{grid-template-columns:1fr;text-align:center}footer.ob span:last-child{text-align:center}}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="f-pt" viewBox="0 0 28 20"><rect width="28" height="20" fill="#009C3B"/><polygon points="14,2 25.5,10 14,18 2.5,10" fill="#FFDF00"/><circle cx="14" cy="10" r="4.3" fill="#002776"/><path d="M9.9 9.2c2.8-.9 5.7-.2 8.2 1.4" stroke="#fff" stroke-width=".9" fill="none"/></symbol>
+  <symbol id="f-tr" viewBox="0 0 28 20"><rect width="28" height="20" fill="#E30A17"/><circle cx="10.6" cy="10" r="5" fill="#fff"/><circle cx="12" cy="10" r="4" fill="#E30A17"/><polygon points="15.6,7.8 16.13,9.27 17.69,9.32 16.46,10.28 16.89,11.78 15.6,10.9 14.31,11.78 14.74,10.28 13.51,9.32 15.07,9.27" fill="#fff"/></symbol>
+  <symbol id="f-en" viewBox="0 0 28 20"><rect width="28" height="20" fill="#012169"/><path d="M0 0L28 20M28 0L0 20" stroke="#fff" stroke-width="4"/><path d="M0 0L28 20M28 0L0 20" stroke="#C8102E" stroke-width="1.6"/><path d="M14 0V20M0 10H28" stroke="#fff" stroke-width="6"/><path d="M14 0V20M0 10H28" stroke="#C8102E" stroke-width="3.4"/></symbol>
+</defs></svg>
+
+<nav class="nav" aria-label="Menu"><div class="wrap">
+  <div class="brand"><img src="assets/logo.jpg" alt="">Baraka</div>
+  <div class="links">
+    <button type="button" data-go="start" data-i="nav1"></button>
+    <button type="button" data-go="middle" data-i="nav2"></button>
+    <button type="button" data-go="end" data-i="nav3"></button>
+  </div>
+  <div class="flags" role="group" aria-label="Language">
+    <button class="flag" type="button" data-l="pt" aria-label="Português" title="Português"><svg viewBox="0 0 28 20" preserveAspectRatio="xMidYMid slice"><use href="#f-pt" width="28" height="20"/></svg></button>
+    <button class="flag" type="button" data-l="tr" aria-label="Türkçe" title="Türkçe"><svg viewBox="0 0 28 20" preserveAspectRatio="xMidYMid slice"><use href="#f-tr" width="28" height="20"/></svg></button>
+    <button class="flag" type="button" data-l="en" aria-label="English" title="English"><svg viewBox="0 0 28 20" preserveAspectRatio="xMidYMid slice"><use href="#f-en" width="28" height="20"/></svg></button>
+  </div>
+</div></nav>
+
+<header class="hero dark">
+  <img class="bg" src="assets/instagram.jpg" alt="">
+  <div class="wrap">
+    <div>
+      <img class="logo" src="assets/logo.jpg" alt="Baraka">
+      <div class="eyebrow" data-i="h_eye"></div>
+      <h1><span data-i="h_h1"></span><span class="ar">بركة</span></h1>
+      <p class="sub" data-i="h_p"></p>
+      <div class="pick">
+        <small data-i="h_pick"></small>
+        <div class="row">
+          <button class="lang" type="button" data-l="pt"><span class="flag"><svg viewBox="0 0 28 20" preserveAspectRatio="xMidYMid slice"><use href="#f-pt" width="28" height="20"/></svg></span>Português</button>
+          <button class="lang" type="button" data-l="tr"><span class="flag"><svg viewBox="0 0 28 20" preserveAspectRatio="xMidYMid slice"><use href="#f-tr" width="28" height="20"/></svg></span>Türkçe</button>
+          <button class="lang" type="button" data-l="en"><span class="flag"><svg viewBox="0 0 28 20" preserveAspectRatio="xMidYMid slice"><use href="#f-en" width="28" height="20"/></svg></span>English</button>
+        </div>
+      </div>
+    </div>
+    <div class="glass">
+      <div class="stat"><b>4.9★</b><span data-i="h_c1"></span></div>
+      <div class="stat"><b>1.8k</b><span data-i="h_c2"></span></div>
+      <div class="stat"><b>5.0★</b><span data-i="h_c3"></span></div>
+    </div>
+  </div>
+</header>
+
+<section class="part" id="start"><div class="wrap">
+  <div class="head rv">
+    <div class="eyebrow" data-i="s_eye"></div>
+    <h2 data-i="s_h2"></h2>
+    <p data-i="s_p"></p>
+  </div>
+
+  <div class="bento">
+    <figure class="card c7 rv"><div class="im"><img src="assets/shopee.jpg" alt="Shopee" loading="lazy"><span class="pill">4.9★</span></div>
+      <figcaption class="tx"><h3>Shopee</h3><span class="st" data-i="sh_d"></span><p data-i="sh_c"></p><span class="tag t-good" data-i="sh_tag"></span></figcaption></figure>
+    <figure class="card c5 rv"><div class="im"><img src="assets/instagram.jpg" alt="Instagram" loading="lazy"><span class="pill">1.8k</span></div>
+      <figcaption class="tx"><h3>Instagram</h3><span class="st" data-i="ig_d"></span><p data-i="ig_c"></p><span class="tag t-good" data-i="ig_tag"></span></figcaption></figure>
+    <figure class="card c7 rv"><div class="im"><img src="assets/loja.jpg" alt="Online store" loading="lazy"><span class="pill">10</span></div>
+      <figcaption class="tx"><h3 data-i="st_t"></h3><span class="st" data-i="st_d"></span><p data-i="st_c"></p><span class="tag t-good" data-i="st_tag"></span></figcaption></figure>
+    <figure class="card c5 rv"><div class="im"><img src="assets/facebook.jpg" alt="Facebook" loading="lazy"><span class="pill">298</span></div>
+      <figcaption class="tx"><h3>Facebook</h3><span class="st" data-i="fb_d"></span><p data-i="fb_c"></p><span class="tag t-low" data-i="fb_tag"></span></figcaption></figure>
+    <figure class="card wide c12 rv"><div class="im"><img src="assets/google.jpg" alt="Google" loading="lazy"></div>
+      <figcaption class="tx"><h3 data-i="g_t"></h3><span class="st" data-i="g_d"></span><p data-i="g_c"></p><span class="tag t-mid" data-i="g_tag"></span></figcaption></figure>
+  </div>
+
+  <div class="trio rv">
+    <div><h3 data-i="v1_t"></h3><p data-i="v1"></p></div>
+    <div><h3 data-i="v2_t"></h3><p data-i="v2"></p></div>
+    <div><h3 data-i="v3_t"></h3><p data-i="v3"></p></div>
+  </div>
+</div></section>
+
+<section class="part soft" id="middle"><div class="wrap">
+  <div class="head rv">
+    <div class="eyebrow" data-i="m_eye"></div>
+    <h2 data-i="m_h2"></h2>
+    <p data-i="m_p"></p>
+  </div>
+
+  <div class="mapgrid rv">
+    <div class="mapbox"><svg id="map" viewBox="0 0 640 600" role="img" aria-label="Map"></svg></div>
+    <div class="list">
+      <ol id="plist"></ol>
+      <div class="legend"><span><i style="background:var(--rest)"></i><span data-i="lg_rest"></span></span><span><i style="background:var(--deli)"></i><span data-i="lg_deli"></span></span><span><i style="background:var(--perf)"></i><span data-i="lg_perf"></span></span></div>
+    </div>
+  </div>
+
+  <div class="facts">
+    <div class="fact rv" data-i="f1"></div>
+    <div class="fact rv" data-i="f2"></div>
+    <div class="fact rv" data-i="f3"></div>
+  </div>
+  <p class="src" data-i="src"></p>
+
+  <div class="head rv" style="margin-top:clamp(56px,9vw,96px)">
+    <div class="eyebrow" data-i="p_eye"></div>
+    <h2 data-i="p_h2"></h2>
+  </div>
+  <div class="plan">
+    <div class="pc rv"><span class="num">01</span>
+      <div class="ic"><svg viewBox="0 0 48 48" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="17"/><circle cx="24" cy="24" r="9"/><circle cx="24" cy="24" r="2.5" fill="#fff"/></svg></div>
+      <h3 data-i="pc1"></h3><p data-i="pc1d"></p>
+      <div class="chips"><span>Google Ads</span><span>Meta Ads</span><span data-i="pc1c"></span></div></div>
+    <div class="pc rv"><span class="num">02</span>
+      <div class="ic"><svg viewBox="0 0 48 48" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="32" height="32" rx="9"/><circle cx="24" cy="24" r="7"/><circle cx="33" cy="15" r="1.6" fill="#fff"/></svg></div>
+      <h3 data-i="pc2"></h3><p data-i="pc2d"></p>
+      <div class="chips"><span data-i="pc2c"></span><span>Reels</span><span>Stories</span></div></div>
+    <div class="pc rv"><span class="num">03</span>
+      <div class="ic"><svg viewBox="0 0 48 48" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 14h28l-3 16H11z"/><path d="M34 18h6l2 8-8 4"/><circle cx="16" cy="38" r="3.5"/><circle cx="32" cy="38" r="3.5"/></svg></div>
+      <h3 data-i="pc3"></h3><p data-i="pc3d"></p>
+      <div class="chips"><span>iFood</span><span>99Food</span><span>Keeta</span></div></div>
+  </div>
+  <div class="flow rv"><span class="b" data-i="fl1"></span><span class="a">→</span><span class="b" data-i="fl2"></span><span class="a">→</span><span class="b" data-i="fl3"></span></div>
+</div></section>
+
+<section class="part" id="end"><div class="wrap">
+  <div class="head rv">
+    <div class="eyebrow" data-i="e_eye"></div>
+    <h2 data-i="e_h2"></h2>
+    <p data-i="e_p"></p>
+  </div>
+
+  <div class="mods rv" id="mods">
+    <button class="mod" type="button" role="switch" aria-checked="true" data-price="997" data-kind="month" data-n="m1"><span><h3 data-i="m1"></h3></span><span class="sw"></span><p data-i="m1d"></p><span class="price">R$ 997<small data-i="per_m"></small></span></button>
+
+    <div class="mod c2 on" id="budgetcard">
+      <div class="mh"><h3 data-i="m2"></h3><button class="swb" type="button" role="switch" aria-checked="true" id="bsw" aria-label="Ad budget"><span class="sw"></span></button></div>
+      <p data-i="m2d"></p>
+      <div class="pickl" data-i="b_pick"></div>
+      <div class="seg" role="radiogroup" id="seg">
+        <button type="button" role="radio" aria-checked="true" data-v="600">R$ 600</button>
+        <button type="button" role="radio" aria-checked="false" data-v="1200">R$ 1.200</button>
+        <button type="button" role="radio" aria-checked="false" data-v="1800">R$ 1.800</button>
+      </div>
+      <span class="price" id="bprice">R$ 600<small data-i="per_m"></small></span>
+    </div>
+
+    <button class="mod" type="button" role="switch" aria-checked="true" data-price="950" data-kind="once" data-n="m3"><span><h3 data-i="m3"></h3></span><span class="sw"></span><p data-i="m3d"></p><span class="price">R$ 950<small data-i="per_o"></small></span></button>
+
+    <div class="mod c2 on">
+      <div class="mh"><h3 data-i="m4"></h3></div>
+      <p data-i="m4d"></p>
+      <div class="pickl" data-i="per_store"></div>
+      <div class="halves">
+        <button class="half" type="button" role="switch" aria-checked="true" data-price="350" data-kind="once"><span class="hn">99Food</span><span class="sw"></span><span class="hp">R$ 350<small data-i="per_o"></small></span></button>
+        <button class="half" type="button" role="switch" aria-checked="true" data-price="350" data-kind="once"><span class="hn">Keeta</span><span class="sw"></span><span class="hp">R$ 350<small data-i="per_o"></small></span></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="total" aria-live="polite">
+    <div><div class="k" data-i="t_m"></div><div class="v" id="tm">R$ 0</div><div class="s" id="tms"></div></div>
+    <div><div class="k" data-i="t_o"></div><div class="v" id="to">R$ 0</div><div class="s" id="tos"></div></div>
+  </div>
+
+  <ul class="notes">
+    <li data-i="n1"></li><li data-i="n2"></li><li data-i="n3"></li>
+  </ul>
+  <div class="next rv" data-i="next"></div>
+  <div class="cafe rv">
+    <div class="cup"><svg viewBox="0 0 48 48" fill="none" stroke="#2A1707" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 18h26v10a12 12 0 0 1-12 12h-2A12 12 0 0 1 8 28z"/><path d="M34 21h3a5 5 0 0 1 0 10h-4"/><path d="M15 6v5M22 4v7M29 6v5"/></svg></div>
+    <div><h3 data-i="cafe_t"></h3><p data-i="cafe_p"></p></div>
+  </div>
+</div></section>
+
+<aside class="sig"><div class="wrap">
+  <div class="brandb">
+    <img src="logo-branco.png" alt="The Ocean Blue">
+    <p class="eyebrow" data-i="d_eye"></p>
+    <h2 data-i="d_h2"></h2>
+  </div>
+  <div>
+    <p class="tx2" data-i="d_tx"></p>
+    <div class="pil">
+      <div><b data-i="d_p1"></b><span data-i="d_p1d"></span></div>
+      <div><b data-i="d_p2"></b><span data-i="d_p2d"></span></div>
+    </div>
+    <p class="who" data-i="d_who"></p>
+  </div>
+</div></aside>
+<footer class="ob"><div class="wrap"><span>Baraka Alimentos · São Bernardo do Campo</span><a href="https://theoceanblue.com.br" target="_blank" rel="noopener">theoceanblue.com.br</a><span data-i="d_ft"></span></div></footer>
+
+<script>
+(function(){
+  document.documentElement.classList.add("js");
+  var L={
+  en:{
+    nav1:"Today",nav2:"Market & plan",nav3:"Investment",
+    h_eye:"Growth proposal · The Ocean Blue",h_h1:"More sales,<br><em>more reach</em>",h_p:"Your digital presence today, the market around you, and a plan you choose by module.",h_pick:"Choose your language",
+    h_c1:"ratings on Shopee (11.2k)",h_c2:"Instagram followers (1.8k)",h_c3:"on Google",
+    s_eye:"Start · Where you are today",s_h2:"A strong base already exists",s_p:"We looked at your store, Shopee, Instagram, Facebook and Google.",
+    sh_d:"11.2k ratings · 4.3k followers · 170 products",sh_c:"A top product has 667 sales. Chat reply rate is 52%: faster answers turn more visits into orders.",sh_tag:"Strongest channel",
+    ig_d:"1.8k followers · 238 posts",ig_c:"Consistent, appetizing product arts with promo prices. The missing piece is reach: ads put them in front of new buyers.",ig_tag:"Great visuals",
+    st_t:"Online store",st_d:"10 categories · cart and login",st_c:"Clean, easy to browse, clear prices. Ready to receive paid traffic.",st_tag:"Solid",
+    fb_d:"298 followers · 0 reviews",fb_c:"Good cover photo, but few followers and no reviews yet. Easy to grow with Meta campaigns.",fb_tag:"Quiet",
+    g_t:"Google Business Profile",g_d:"5.0★ · 10 reviews",g_c:"Perfect 5.0 rating, but only 10 reviews. More reviews means a higher place on the map when people search nearby.",g_tag:"Needs more reviews",
+    v1_t:"Strong",v1:"Great products, a recognizable brand and real social proof on Shopee (11.2k ratings).",
+    v2_t:"Gap",v2:"Few people outside Shopee know you. Contact details differ between channels: three phone numbers and two addresses. One WhatsApp number everywhere fixes this.",
+    v3_t:"Opportunity",v3:"We did not find Baraka on iFood, 99Food or Keeta. Nearby Arab restaurants already sell there.",
+    m_eye:"Middle · Your market",m_h2:"Who is around you, within 5 km",m_p:"Arab food and Arab shops near your São Bernardo do Campo store (R. Silva Jardim, 17).",
+    lg_rest:"Restaurant / esfiharia",lg_deli:"Deli / market",lg_perf:"Arab perfume",
+    d_esf:"Esfiharia",d_rest:"Arab restaurant",d_perf:"Arab perfume shop",d_deli:"Arab deli and sweets",
+    f1:"<b>9</b>Arab places inside 5 km. Most are restaurants.",f2:"<b>1</b>Arab deli found, 3.1 km away. No importer-distributor like Baraka.",f3:"<b>2</b>of them already sell on delivery apps (Syrian Food and Maktub on 99Food).",
+    src:"Locations: Google Maps, November 2026. Straight-line distances from the Baraka SBC store. Not a complete census: only places found in our search.",
+    p_eye:"Middle · What we do",p_h2:"If the goal is more sales, three moves",
+    pc1:"Campaigns",pc1d:"Ads that bring buyers to your store and to Shopee.",pc1c:"Reports",
+    pc2:"Content",pc2d:"Product arts and short videos made for the ads.",pc2c:"Arts",
+    pc3:"Delivery apps",pc3d:"A new sales channel where Arab-food buyers already order.",
+    fl1:"Sees the ad",fl2:"Visits the store",fl3:"Orders",
+    e_eye:"End · Investment",e_h2:"Choose only what you need",e_p:"Tap a switch to add or remove a service. The total updates.",
+    m1:"Campaign management",m1d:"Google Ads + Meta Ads, content creation and monthly report.",
+    m2:"Ad budget",m2d:"Money spent on Google and Meta ads. Paid directly to the platforms.",
+    m3:"iFood, ready to sell",m3d:"Set up the store, align the menu and get it running. Only if you do not have it yet.",
+    m4:"99Food + Keeta",m4d:"Copy the iFood menu to each app you choose.",
+    per_m:"per month",per_o:"one time",t_m:"Every month",t_o:"One time",none:"Nothing selected",
+    n1:"The ad budget goes to Google and Meta, not to The Ocean Blue.",n2:"Delivery apps charge their own commission on each order.",n3:"Values in Brazilian reais (R$).",
+    b_pick:"Pick the monthly amount that fits your budget",per_store:"R$ 350 per store",cafe_t:"Let's have a coffee, no commitment",cafe_p:"If you have questions and want to understand each process better, we come to your store and talk in person.",next:"Next step: tell us which modules you want and we start.",
+    d_eye:"Strategy and creation",d_h2:"The Ocean Blue DNA",
+    d_tx:"This analysis follows the geomarketing method that is part of our background, crossing public data on population, income and movement to understand where and how consumption happens. This is The Ocean Blue way of working: combining the reading of territory and consumer behavior with creation that turns that reading into images, video and content people want to see and share.",
+    d_p1:"Market intelligence",d_p1d:"Geomarketing method from our work on expansion studies for large chains.",
+    d_p2:"Creation and audiovisual",d_p2d:"Creative direction, video and social media that turn the study into campaigns, experience and promotion.",
+    d_who:"<b>Luiz Fernando</b> · strategy and market intelligence  |  <b>Elaine Lazari</b> · creation, audiovisual and social media",d_ft:"The Ocean Blue · strategy, data and creation"
+  },
+  pt:{
+    nav1:"Hoje",nav2:"Mercado e plano",nav3:"Investimento",
+    h_eye:"Proposta de crescimento · The Ocean Blue",h_h1:"Mais vendas,<br><em>mais alcance</em>",h_p:"Sua presença digital hoje, o mercado ao seu redor e um plano que você escolhe por módulo.",h_pick:"Escolha o idioma",
+    h_c1:"avaliações na Shopee (11,2 mil)",h_c2:"seguidores no Instagram (1,8 mil)",h_c3:"no Google",
+    s_eye:"Início · Onde você está hoje",s_h2:"Você já tem uma base forte",s_p:"Analisamos sua loja, Shopee, Instagram, Facebook e Google.",
+    sh_d:"11,2 mil avaliações · 4,3 mil seguidores · 170 produtos",sh_c:"Um produto já tem 667 vendas. A taxa de resposta no chat é 52%: responder mais rápido transforma mais visitas em pedidos.",sh_tag:"Canal mais forte",
+    ig_d:"1,8 mil seguidores · 238 publicações",ig_c:"Artes de produto apetitosas e consistentes, com preços promocionais. Falta alcance: os anúncios levam isso a novos compradores.",ig_tag:"Visual excelente",
+    st_t:"Loja online",st_d:"10 categorias · carrinho e login",st_c:"Limpa, fácil de navegar, preços claros. Pronta para receber tráfego pago.",st_tag:"Sólida",
+    fb_d:"298 seguidores · 0 avaliações",fb_c:"Boa foto de capa, mas poucos seguidores e nenhuma avaliação ainda. Fácil de crescer com campanhas no Meta.",fb_tag:"Parada",
+    g_t:"Perfil da Empresa no Google",g_d:"5,0★ · 10 avaliações",g_c:"Nota 5,0 perfeita, mas só 10 avaliações. Mais avaliações colocam você mais alto no mapa quando as pessoas buscam por perto.",g_tag:"Precisa de mais avaliações",
+    v1_t:"Forte",v1:"Ótimos produtos, marca reconhecível e prova social real na Shopee (11,2 mil avaliações).",
+    v2_t:"Lacuna",v2:"Poucas pessoas fora da Shopee conhecem você. Os contatos mudam entre os canais: três telefones e dois endereços. Um único WhatsApp em todos os canais resolve.",
+    v3_t:"Oportunidade",v3:"Não encontramos a Baraka no iFood, 99Food nem Keeta. Restaurantes árabes próximos já vendem lá.",
+    m_eye:"Meio · Seu mercado",m_h2:"Quem está ao seu redor, em 5 km",m_p:"Comida árabe e lojas árabes perto da sua loja em São Bernardo do Campo (R. Silva Jardim, 17).",
+    lg_rest:"Restaurante / esfiharia",lg_deli:"Delicatessen / mercado",lg_perf:"Perfume árabe",
+    d_esf:"Esfiharia",d_rest:"Restaurante árabe",d_perf:"Loja de perfume árabe",d_deli:"Delicatessen árabe e doces",
+    f1:"<b>9</b>lugares árabes em 5 km. A maioria é restaurante.",f2:"<b>1</b>delicatessen árabe encontrado, a 3,1 km. Nenhum importador-distribuidor como a Baraka.",f3:"<b>2</b>deles já vendem em apps de entrega (Syrian Food e Maktub no 99Food).",
+    src:"Locais: Google Maps, novembro de 2026. Distâncias em linha reta a partir da loja Baraka SBC. Não é um censo completo: só lugares encontrados na nossa busca.",
+    p_eye:"Meio · O que fazemos",p_h2:"Se o objetivo é vender mais, três movimentos",
+    pc1:"Campanhas",pc1d:"Anúncios que levam compradores à sua loja e à Shopee.",pc1c:"Relatórios",
+    pc2:"Conteúdo",pc2d:"Artes de produto e vídeos curtos feitos para os anúncios.",pc2c:"Artes",
+    pc3:"Apps de entrega",pc3d:"Um novo canal de vendas onde quem ama comida árabe já pede.",
+    fl1:"Vê o anúncio",fl2:"Visita a loja",fl3:"Compra",
+    e_eye:"Fim · Investimento",e_h2:"Escolha só o que precisa",e_p:"Toque no botão para incluir ou tirar um serviço. O total atualiza.",
+    m1:"Gestão de campanhas",m1d:"Google Ads + Meta Ads, criação de conteúdo e relatório mensal.",
+    m2:"Verba de anúncios",m2d:"Valor investido nos anúncios do Google e Meta. Pago direto às plataformas.",
+    m3:"iFood pronto para vender",m3d:"Configuramos a loja, alinhamos o cardápio e deixamos rodando. Só se você ainda não tiver.",
+    m4:"99Food + Keeta",m4d:"Replicamos o cardápio do iFood em cada app que você escolher.",
+    per_m:"por mês",per_o:"uma vez",t_m:"Todo mês",t_o:"Uma vez",none:"Nada selecionado",
+    n1:"A verba vai para o Google e a Meta, não para a The Ocean Blue.",n2:"Os apps de entrega cobram comissão própria sobre cada pedido.",n3:"Valores em reais (R$).",
+    b_pick:"Escolha o valor mensal que cabe na sua verba",per_store:"R$ 350 por loja",cafe_t:"Vamos tomar um café, sem compromisso",cafe_p:"Se tiver dúvidas e quiser entender melhor cada um dos processos, nós vamos até o seu estabelecimento e conversamos pessoalmente.",next:"Próximo passo: diga quais módulos você quer e começamos.",
+    d_eye:"Estratégia e criação",d_h2:"DNA The Ocean Blue",
+    d_tx:"Esta análise segue a metodologia de geomarketing que faz parte da nossa trajetória, cruzando dados públicos de população, renda e deslocamento para entender onde e como o consumo acontece. Esse é o jeito The Ocean Blue de trabalhar: unir a leitura do território e do comportamento do consumidor à criação que transforma essa leitura em imagem, vídeo e conteúdo que o cliente quer ver e compartilhar.",
+    d_p1:"Inteligência de mercado",d_p1d:"Metodologia de geomarketing da nossa trajetória em estudos de expansão para grandes redes.",
+    d_p2:"Criação e audiovisual",d_p2d:"Direção criativa, vídeo e redes sociais que transformam o estudo em campanhas, experiência e divulgação.",
+    d_who:"<b>Luiz Fernando</b> · estratégia e inteligência de mercado  |  <b>Elaine Lazari</b> · criação, audiovisual e mídias sociais",d_ft:"The Ocean Blue · estratégia, dados e criação"
+  },
+  tr:{
+    nav1:"Bugün",nav2:"Pazar ve plan",nav3:"Yatırım",
+    h_eye:"Büyüme teklifi · The Ocean Blue",h_h1:"Daha fazla satış,<br><em>daha geniş erişim</em>",h_p:"Bugünkü dijital varlığınız, çevrenizdeki pazar ve modül modül seçebileceğiniz bir plan.",h_pick:"Dilinizi seçin",
+    h_c1:"Shopee'de değerlendirme (11,2 bin)",h_c2:"Instagram takipçisi (1,8 bin)",h_c3:"Google'da",
+    s_eye:"Başlangıç · Bugün neredesiniz",s_h2:"Güçlü bir temeliniz zaten var",s_p:"Mağazanızı, Shopee, Instagram, Facebook ve Google'ı inceledik.",
+    sh_d:"11,2 bin değerlendirme · 4,3 bin takipçi · 170 ürün",sh_c:"Bir ürün 667 satışa ulaştı. Sohbet yanıt oranı %52: daha hızlı yanıt, daha çok ziyareti siparişe çevirir.",sh_tag:"En güçlü kanal",
+    ig_d:"1,8 bin takipçi · 238 gönderi",ig_c:"Tutarlı, iştah açıcı ürün görselleri ve kampanya fiyatları. Eksik olan erişim: reklamlar bunları yeni alıcılara ulaştırır.",ig_tag:"Harika görseller",
+    st_t:"Online mağaza",st_d:"10 kategori · sepet ve giriş",st_c:"Temiz, gezmesi kolay, net fiyatlar. Ücretli trafiğe hazır.",st_tag:"Sağlam",
+    fb_d:"298 takipçi · 0 değerlendirme",fb_c:"Kapak fotoğrafı iyi, ancak takipçi az ve henüz değerlendirme yok. Meta kampanyalarıyla kolay büyür.",fb_tag:"Sessiz",
+    g_t:"Google İşletme Profili",g_d:"5,0★ · 10 değerlendirme",g_c:"Mükemmel 5,0 puan, ama yalnızca 10 değerlendirme. Daha fazla değerlendirme, yakınlarda arama yapanlara haritada daha üst sıra demektir.",g_tag:"Daha fazla değerlendirme lazım",
+    v1_t:"Güçlü",v1:"Harika ürünler, tanınır bir marka ve Shopee'de gerçek sosyal kanıt (11,2 bin değerlendirme).",
+    v2_t:"Eksik",v2:"Shopee dışında sizi tanıyan az. İletişim bilgileri kanallara göre değişiyor: üç telefon ve iki adres. Her yerde tek bir WhatsApp numarası bunu çözer.",
+    v3_t:"Fırsat",v3:"Baraka'yı iFood, 99Food veya Keeta'da bulamadık. Yakındaki Arap restoranları orada zaten satış yapıyor.",
+    m_eye:"Orta · Pazarınız",m_h2:"5 km içinde çevrenizde kimler var",m_p:"São Bernardo do Campo mağazanızın (R. Silva Jardim, 17) yakınındaki Arap yemeği ve Arap dükkânları.",
+    lg_rest:"Restoran / esfiha",lg_deli:"Şarküteri / market",lg_perf:"Arap parfümü",
+    d_esf:"Esfiha dükkânı",d_rest:"Arap restoranı",d_perf:"Arap parfüm mağazası",d_deli:"Arap şarküteri ve tatlılar",
+    f1:"<b>9</b>Arap mekânı 5 km içinde. Çoğu restoran.",f2:"<b>1</b>Arap şarküteri bulundu, 3,1 km uzakta. Baraka gibi ithalatçı-distribütör yok.",f3:"<b>2</b>tanesi teslimat uygulamalarında zaten satış yapıyor (Syrian Food ve Maktub, 99Food'da).",
+    src:"Konumlar: Google Maps, Kasım 2026. Baraka SBC mağazasından kuş uçuşu mesafeler. Tam bir sayım değil: yalnızca aramamızda bulunan yerler.",
+    p_eye:"Orta · Ne yapıyoruz",p_h2:"Hedef daha çok satışsa, üç hamle",
+    pc1:"Kampanyalar",pc1d:"Alıcıları mağazanıza ve Shopee'ye getiren reklamlar.",pc1c:"Raporlar",
+    pc2:"İçerik",pc2d:"Reklamlar için hazırlanmış ürün görselleri ve kısa videolar.",pc2c:"Görseller",
+    pc3:"Teslimat uygulamaları",pc3d:"Arap yemeği severlerin zaten sipariş verdiği yeni bir satış kanalı.",
+    fl1:"Reklamı görür",fl2:"Mağazayı ziyaret eder",fl3:"Sipariş verir",
+    e_eye:"Son · Yatırım",e_h2:"Yalnızca ihtiyacınız olanı seçin",e_p:"Bir hizmeti eklemek veya çıkarmak için düğmeye dokunun. Toplam güncellenir.",
+    m1:"Kampanya yönetimi",m1d:"Google Ads + Meta Ads, içerik üretimi ve aylık rapor.",
+    m2:"Reklam bütçesi",m2d:"Google ve Meta reklamlarına harcanan tutar. Doğrudan platformlara ödenir.",
+    m3:"iFood, satışa hazır",m3d:"Mağaza kurulumu, menü düzenlemesi ve işleyişe alma. Yalnızca henüz yoksa.",
+    m4:"99Food + Keeta",m4d:"iFood menüsünü seçtiğiniz her uygulamaya kopyalıyoruz.",
+    per_m:"aylık",per_o:"tek seferlik",t_m:"Her ay",t_o:"Tek seferlik",none:"Seçim yok",
+    n1:"Reklam bütçesi Google ve Meta'ya gider, The Ocean Blue'ya değil.",n2:"Teslimat uygulamaları her siparişten kendi komisyonunu alır.",n3:"Tutarlar Brezilya reali (R$) cinsindendir.",
+    b_pick:"Bütçenize uygun aylık tutarı seçin",per_store:"Mağaza başına R$ 350",cafe_t:"Bir kahve içelim, taahhüt yok",cafe_p:"Sorularınız varsa ve her süreci daha iyi anlamak isterseniz, işletmenize gelip yüz yüze konuşuruz.",next:"Sonraki adım: hangi modülleri istediğinizi söyleyin, başlayalım.",
+    d_eye:"Strateji ve yaratıcılık",d_h2:"The Ocean Blue DNA",
+    d_tx:"Bu analiz, yolculuğumuzun bir parçası olan geomarketing (coğrafi pazarlama) yöntemini izler; tüketimin nerede ve nasıl gerçekleştiğini anlamak için nüfus, gelir ve hareketlilik verilerini çaprazlar. The Ocean Blue'nun çalışma biçimi budur: bölge ve tüketici davranışı okumasını, bu okumayı müşterinin görmek ve paylaşmak isteyeceği görsele, videoya ve içeriğe dönüştüren yaratıcılıkla birleştirmek.",
+    d_p1:"Pazar istihbaratı",d_p1d:"Büyük zincirler için yaptığımız genişleme çalışmalarından gelen geomarketing yöntemi.",
+    d_p2:"Yaratıcılık ve görsel-işitsel",d_p2d:"Çalışmayı kampanyalara, deneyime ve tanıtıma dönüştüren yaratıcı yönetim, video ve sosyal medya.",
+    d_who:"<b>Luiz Fernando</b> · strateji ve pazar istihbaratı  |  <b>Elaine Lazari</b> · yaratıcılık, görsel-işitsel ve sosyal medya",d_ft:"The Ocean Blue · strateji, veri ve yaratıcılık"
+  }};
+
+  var P=[
+    {n:"Esfiharia e Pizzaria Jardins",t:"rest",d:"d_esf",km:0.3,x:0.25,y:0.03},
+    {n:"Maktub",t:"rest",d:"d_rest",km:0.4,x:-0.08,y:-0.36},
+    {n:"Fragrâncias Árabe",t:"perf",d:"d_perf",km:1.2,x:-0.29,y:1.21},
+    {n:"Esfiharia Mundo Árabe",t:"rest",d:"d_esf",km:1.8,x:-1.18,y:1.35},
+    {n:"Hanan Foods",t:"rest",d:"d_rest",km:2.0,x:-1.10,y:1.64},
+    {n:"Wafa Delicatessen",t:"deli",d:"d_deli",km:3.1,x:-1.10,y:2.85},
+    {n:"Simbad",t:"rest",d:"d_rest",km:3.2,x:-1.42,y:2.88},
+    {n:"Syrian Food",t:"rest",d:"d_rest",km:3.3,x:-1.11,y:3.07},
+    {n:"Sahara",t:"rest",d:"d_rest",km:3.7,x:-0.90,y:3.57}
+  ];
+  var C={rest:"#F0713A",deli:"#7FC043",perf:"#A99C8C"};
+
+  /* map */
+  var cx=330,cy=520,s=100,h='';
+  h+='<defs><radialGradient id="bgm" cx="50%" cy="88%" r="85%"><stop offset="0" stop-color="#4A2D12"/><stop offset="1" stop-color="#1C0F05"/></radialGradient></defs><rect width="640" height="600" fill="url(#bgm)"/>';
+  for(var r=1;r<=5;r++){
+    h+='<circle cx="'+cx+'" cy="'+cy+'" r="'+(r*s)+'" fill="'+(r==5?'rgba(242,169,59,.07)':'none')+'" stroke="'+(r==5?'#F2A93B':'rgba(255,233,194,.22)')+'" stroke-width="'+(r==5?2.5:1.2)+'" stroke-dasharray="'+(r==5?'':'3 6')+'"/>';
+    h+='<text x="'+(cx+6)+'" y="'+(cy-r*s+17)+'" font-size="13" font-weight="700" fill="'+(r==5?'#F2A93B':'rgba(255,233,194,.55)')+'" font-family="Plus Jakarta Sans,sans-serif">'+r+' km</text>';
+  }
+  h+='<g transform="translate(596,52)"><path d="M0 -22 L9 6 L0 0 L-9 6 Z" fill="#F2A93B"/><text y="26" text-anchor="middle" font-size="14" font-weight="700" fill="#F2A93B" font-family="Plus Jakarta Sans,sans-serif">N</text></g>';
+  P.forEach(function(p,i){
+    var x=cx+p.x*s,y=cy-p.y*s;
+    h+='<line x1="'+cx+'" y1="'+cy+'" x2="'+x+'" y2="'+y+'" stroke="'+C[p.t]+'" stroke-opacity=".28" stroke-width="1.4"/>';
+    h+='<g class="pin" style="color:'+C[p.t]+'"><circle cx="'+x+'" cy="'+y+'" r="12" fill="'+C[p.t]+'" stroke="#1C0F05" stroke-width="2.5"/><text x="'+x+'" y="'+(y+4.5)+'" text-anchor="middle" font-size="12.5" font-weight="800" fill="#1C0F05" font-family="Plus Jakarta Sans,sans-serif">'+(i+1)+'</text></g>';
+  });
+  h+='<g class="pin" style="color:#F2A93B"><circle cx="'+cx+'" cy="'+cy+'" r="17" fill="#F2A93B" stroke="#fff" stroke-width="3.5"/><text x="'+cx+'" y="'+(cy+6)+'" text-anchor="middle" font-size="17" font-weight="800" fill="#2A1707" font-family="Outfit,sans-serif">B</text></g>';
+  h+='<text x="'+(cx+26)+'" y="'+(cy+26)+'" font-size="15" font-weight="800" fill="#fff" font-family="Outfit,sans-serif">Baraka</text>';
+  document.getElementById("map").innerHTML=h;
+
+  var lang="en";
+  function t(k){return (L[lang]&&L[lang][k])||L.en[k]||""}
+  function money(v){return "R$ "+v.toLocaleString("pt-BR")}
+  function plist(){
+    var ol=document.getElementById("plist");ol.innerHTML="";
+    P.forEach(function(p,i){
+      var li=document.createElement("li");
+      li.innerHTML='<span class="dot" style="background:'+C[p.t]+'">'+(i+1)+'</span><span>'+p.n+'<small>'+t(p.d)+'</small></span><span class="km">'+p.km.toFixed(1).replace(".",lang==="en"?".":",")+' km</span>';
+      ol.appendChild(li);
+    });
+  }
+  var sws=[].slice.call(document.querySelectorAll("#mods [role=switch]"));
+  var bval=600,bsw=document.getElementById("bsw"),bcard=document.getElementById("budgetcard");
+  function calc(){
+    var m=0,o=0,mn=[],on=[];
+    sws.forEach(function(b){
+      if(b===bsw||b.getAttribute("aria-checked")!=="true")return;
+      var v=+b.dataset.price,n=b.dataset.n?t(b.dataset.n):b.querySelector(".hn").textContent;
+      if(b.dataset.kind==="month"){m+=v;mn.push(n)}else{o+=v;on.push(n)}
+    });
+    if(bsw.getAttribute("aria-checked")==="true"){m+=bval;mn.push(t("m2"))}
+    document.getElementById("tm").textContent=money(m);
+    document.getElementById("to").textContent=money(o);
+    document.getElementById("tms").textContent=mn.length?mn.join(" + "):t("none");
+    document.getElementById("tos").textContent=on.length?on.join(" + "):t("none");
+  }
+  function apply(l){
+    lang=l;
+    document.documentElement.lang=l;
+    [].forEach.call(document.querySelectorAll("[data-i]"),function(e){e.innerHTML=t(e.getAttribute("data-i"))});
+    [].forEach.call(document.querySelectorAll("[data-l]"),function(b){b.setAttribute("aria-pressed",b.getAttribute("data-l")===l?"true":"false")});
+    document.getElementById("map").setAttribute("aria-label",({en:"Map of Arab food places within 5 km of Baraka",pt:"Mapa de lugares árabes em 5 km da Baraka",tr:"Baraka'nın 5 km çevresindeki Arap mekânları haritası"})[l]);
+    plist();calc();
+    try{localStorage.setItem("baraka-lang",l)}catch(e){}
+    if(location.hash.slice(1)!==l){try{history.replaceState(null,"","#"+l)}catch(e){}}
+  }
+  [].forEach.call(document.querySelectorAll("[data-l]"),function(b){b.addEventListener("click",function(){apply(b.getAttribute("data-l"))})});
+  [].forEach.call(document.querySelectorAll("[data-go]"),function(b){b.addEventListener("click",function(){var e=document.getElementById(b.getAttribute("data-go"));if(e)e.scrollIntoView({behavior:"smooth",block:"start"})})});
+  sws.forEach(function(b){b.addEventListener("click",function(){
+    var on=b.getAttribute("aria-checked")!=="true";
+    b.setAttribute("aria-checked",on?"true":"false");
+    if(b===bsw)bcard.classList.toggle("on",on);
+    calc();
+  })});
+  [].forEach.call(document.querySelectorAll("#seg button"),function(b){b.addEventListener("click",function(){
+    [].forEach.call(document.querySelectorAll("#seg button"),function(x){x.setAttribute("aria-checked",x===b?"true":"false")});
+    bval=+b.getAttribute("data-v");
+    bsw.setAttribute("aria-checked","true");bcard.classList.add("on");
+    document.getElementById("bprice").innerHTML=money(bval)+'<small data-i="per_m">'+t("per_m")+'</small>';
+    calc();
+  })});
+
+  var start=location.hash.slice(1);
+  if(!L[start]){start="";try{start=localStorage.getItem("baraka-lang")||""}catch(e){}}
+  if(!L[start]){var nl=(navigator.language||"en").slice(0,2).toLowerCase();start=L[nl]?nl:"en"}
+  apply(start);
+
+  if("IntersectionObserver" in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}})},{threshold:.12,rootMargin:"0px 0px -40px 0px"});
+    [].forEach.call(document.querySelectorAll(".rv"),function(e){io.observe(e)});
+  }else{[].forEach.call(document.querySelectorAll(".rv"),function(e){e.classList.add("in")})}
+})();
+</script>
+
+</body>
+</html>
