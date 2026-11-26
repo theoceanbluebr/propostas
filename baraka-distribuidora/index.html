@@ -67,6 +67,19 @@ section.soft{background:linear-gradient(180deg,#FFF3DB,#FFFAF0)}
 .head{margin-bottom:34px;max-width:720px}
 .head h2{font-size:clamp(2.1rem,6vw,3.8rem);font-weight:800;margin-top:12px}
 .head p{margin:14px 0 0;color:var(--mute);font-size:1.08rem}
+
+section.part{position:relative}
+section.part::before{content:"";position:absolute;left:0;right:0;top:0;height:8px;background:linear-gradient(90deg,#F2A93B,#7DBB45)}
+.head .eyebrow.step{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;font-size:1rem;letter-spacing:0;text-transform:none;color:var(--brown);margin-bottom:6px}
+.head .eyebrow.step::before{display:none}
+.step .stn{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;font-family:"Outfit";font-weight:800;font-size:1.5rem;color:var(--brown);background:linear-gradient(135deg,#FFD58A,#F2A93B);box-shadow:0 0 0 6px rgba(242,169,59,.22);flex:none}
+.step .stp{background:var(--brown);color:#fff;border-radius:999px;padding:9px 20px;font-weight:800;font-size:.9rem;letter-spacing:.16em;text-transform:uppercase}
+.step .stt{font-family:"Outfit";font-weight:700;font-size:clamp(1.15rem,3vw,1.5rem);color:var(--brown)}
+.head.sub{max-width:none;margin-top:clamp(56px,9vw,96px);padding-top:clamp(36px,6vw,56px);border-top:2px dashed #E3C98E}
+.head.sub>*{max-width:720px}
+.head .eyebrow.step{max-width:none}
+.head{position:relative}
+.head h2{padding-left:0;margin-top:18px}
 /* bento */
 .bento{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:18px}
 .c7{grid-column:span 7}.c5{grid-column:span 5}.c12{grid-column:span 12}
@@ -265,7 +278,7 @@ footer.ob a{color:#fff;font-weight:700;text-decoration:none;border-bottom:1px so
 
 <section class="part" id="start"><div class="wrap">
   <div class="head rv">
-    <div class="eyebrow" data-i="s_eye"></div>
+    <div class="eyebrow step" data-step="1" data-i="s_eye"></div>
     <h2 data-i="s_h2"></h2>
     <p data-i="s_p"></p>
   </div>
@@ -292,7 +305,7 @@ footer.ob a{color:#fff;font-weight:700;text-decoration:none;border-bottom:1px so
 
 <section class="part soft" id="middle"><div class="wrap">
   <div class="head rv">
-    <div class="eyebrow" data-i="m_eye"></div>
+    <div class="eyebrow step" data-step="2" data-i="m_eye"></div>
     <h2 data-i="m_h2"></h2>
     <p data-i="m_p"></p>
   </div>
@@ -312,8 +325,8 @@ footer.ob a{color:#fff;font-weight:700;text-decoration:none;border-bottom:1px so
   </div>
   <p class="src" data-i="src"></p>
 
-  <div class="head rv" style="margin-top:clamp(56px,9vw,96px)">
-    <div class="eyebrow" data-i="p_eye"></div>
+  <div class="head sub rv">
+    <div class="eyebrow step" data-step="2" data-i="p_eye"></div>
     <h2 data-i="p_h2"></h2>
   </div>
   <div class="plan">
@@ -335,7 +348,7 @@ footer.ob a{color:#fff;font-weight:700;text-decoration:none;border-bottom:1px so
 
 <section class="part" id="end"><div class="wrap">
   <div class="head rv">
-    <div class="eyebrow" data-i="e_eye"></div>
+    <div class="eyebrow step" data-step="3" data-i="e_eye"></div>
     <h2 data-i="e_h2"></h2>
     <p data-i="e_p"></p>
   </div>
@@ -579,6 +592,10 @@ footer.ob a{color:#fff;font-weight:700;text-decoration:none;border-bottom:1px so
     lang=l;
     document.documentElement.lang=l;
     [].forEach.call(document.querySelectorAll("[data-i]"),function(e){e.innerHTML=t(e.getAttribute("data-i"))});
+    [].forEach.call(document.querySelectorAll(".eyebrow.step"),function(e){
+      var p=t(e.getAttribute("data-i")).split(" · ");
+      e.innerHTML='<span class="stn">'+e.getAttribute("data-step")+'</span><span class="stp">'+p[0]+'</span><span class="stt">'+(p[1]||"")+'</span>';
+    });
     [].forEach.call(document.querySelectorAll("[data-l]"),function(b){b.setAttribute("aria-pressed",b.getAttribute("data-l")===l?"true":"false")});
     document.getElementById("map").setAttribute("aria-label",({en:"Map of Arab food places within 5 km of Baraka",pt:"Mapa de lugares árabes em 5 km da Baraka",tr:"Baraka'nın 5 km çevresindeki Arap mekânları haritası"})[l]);
     plist();calc();
