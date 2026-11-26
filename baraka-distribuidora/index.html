@@ -145,6 +145,8 @@ section.part::before{content:"";position:absolute;left:0;right:0;top:0;height:8p
 .mod h3{font-size:1.65rem}
 .mod p{margin:6px 0 0;color:var(--mute);font-size:.96rem;grid-column:1}
 .mod .price{grid-column:1/-1;font-family:"Outfit";font-weight:800;font-size:2.5rem;line-height:1;color:var(--brown);margin-top:8px}
+.mod .then{grid-column:1/-1;justify-self:start;margin-top:10px;font-size:.82rem;font-weight:700;color:var(--brown);background:linear-gradient(135deg,#FFE3B0,#F8BE5E);padding:6px 14px;border-radius:999px}
+.total .after{margin-top:10px;display:inline-block;font-size:.88rem;font-weight:700;color:var(--brown);background:var(--gold);padding:5px 14px;border-radius:999px}
 .mod .price small{font-family:"Plus Jakarta Sans";font-weight:600;font-size:.85rem;color:var(--mute);margin-left:8px}
 .sw{display:block;width:56px;height:32px;border-radius:999px;background:#E5DACA;position:relative;transition:background .25s;flex:none}
 .sw::after{content:"";position:absolute;top:3px;left:3px;width:26px;height:26px;border-radius:50%;background:#fff;box-shadow:0 3px 8px rgba(0,0,0,.25);transition:transform .25s cubic-bezier(.2,.8,.2,1)}
@@ -360,11 +362,12 @@ html[dir=rtl] body,html[dir=rtl] h1,html[dir=rtl] h2,html[dir=rtl] h3,html[dir=r
   </div>
 
   <div class="mods rv" id="mods">
-    <button class="mod" type="button" role="switch" aria-checked="true" data-price="997" data-kind="month" data-n="m1">
+    <button class="mod" type="button" role="switch" aria-checked="true" data-price="997" data-after="1497" data-kind="month" data-n="m1">
       <span class="bdg" data-i="b_month"></span>
       <span><h3 data-i="m1"></h3></span><span class="sw"></span>
       <span class="feats"><span data-i="mf1"></span><span data-i="mf2"></span><span data-i="mf3"></span><span data-i="mf4"></span></span>
-      <span class="price">R$ 997<small data-i="per_m"></small></span>
+      <span class="price">R$ 997<small data-i="mp_first"></small></span>
+      <span class="then" data-i="mp_then"></span>
     </button>
 
     <div class="mod c2 on" id="budgetcard">
@@ -382,7 +385,7 @@ html[dir=rtl] body,html[dir=rtl] h1,html[dir=rtl] h2,html[dir=rtl] h3,html[dir=r
   </div>
 
   <div class="total" aria-live="polite">
-    <div><div class="k" data-i="t_m"></div><div class="v" id="tm">R$ 0</div><div class="s" id="tms"></div></div>
+    <div><div class="k" id="tk" data-i="t_m"></div><div class="v" id="tm">R$ 0</div><div class="s" id="tms"></div><div class="after" id="tafter" hidden></div></div>
   </div>
 
   <div class="delivery rv">
@@ -458,7 +461,7 @@ html[dir=rtl] body,html[dir=rtl] h1,html[dir=rtl] h2,html[dir=rtl] h3,html[dir=r
     m2:"Ad budget",m2d:"Money spent on Google and Meta ads. Paid directly to the platforms.",
     m3:"iFood, ready to sell",m3d:"Set up the store, align the menu and get it running. Only if you do not have it yet.",
     m4:"99Food + Keeta",m4d:"Copy the iFood menu to each app you choose.",
-    per_m:"per month",per_o:"one time",t_m:"Every month",t_o:"One time",none:"Nothing selected",
+    mp_first:"per month, first 3 months",mp_then:"Welcome price. Then R$ 1.497 per month.",t_m3:"First 3 months, every month",t_after:"From month 4:",per_m:"per month",per_o:"one time",t_m:"Every month",t_o:"One time",none:"Nothing selected",
     n1:"The ad budget goes to Google and Meta, not to The Ocean Blue.",n2:"Delivery apps charge their own commission on each order.",n3:"Values in Brazilian reais (R$).",
     b_pick:"Pick the monthly amount that fits your budget",per_store:"R$ 350 per store",cafe_t:"Let's have a coffee, no commitment",cafe_p:"If you have questions and want to understand each process better, we come to your store and talk in person.",b_month:"Paid every month",mf1:"Google Ads",mf2:"Meta Ads",mf3:"Content creation (creatives)",mf4:"Monthly reports",dl_eye:"Optional extra",dl_t:"Delivery apps",dl_p:"Optional extras to sell more on delivery apps. Paid once.",dk:"Copy the iFood menu to this app.",ma_t:"Online menu analysis",ma_d:"Suggestions and product repositioning for more engagement, review of product descriptions, and store setup (SEO) to rank higher in online search.",ma_chip:"Up to 100 products",next:"Next step: tell us which modules you want and we start.",
     d_eye:"Strategy and creation",d_h2:"The Ocean Blue DNA",
@@ -495,7 +498,7 @@ html[dir=rtl] body,html[dir=rtl] h1,html[dir=rtl] h2,html[dir=rtl] h3,html[dir=r
     m2:"ميزانية الإعلانات",m2d:"المبلغ المنفَق على إعلانات Google وMeta. يُدفع مباشرة للمنصات.",
     m3:"iFood جاهز للبيع",m3d:"نجهّز المتجر وننسّق القائمة ونشغّله. فقط إن لم يكن لديكم حساب بعد.",
     m4:"99Food + Keeta",m4d:"ننسخ قائمة iFood إلى كل تطبيق تختارونه.",
-    per_m:"شهريًا",per_o:"مرة واحدة",t_m:"كل شهر",t_o:"مرة واحدة",none:"لم يتم اختيار شيء",
+    mp_first:"شهريًا، لأول 3 أشهر",mp_then:"سعر الترحيب. بعدها R$ 1.497 شهريًا.",t_m3:"أول 3 أشهر، كل شهر",t_after:"ابتداءً من الشهر الرابع:",per_m:"شهريًا",per_o:"مرة واحدة",t_m:"كل شهر",t_o:"مرة واحدة",none:"لم يتم اختيار شيء",
     n1:"ميزانية الإعلانات تذهب إلى Google وMeta، وليس إلى The Ocean Blue.",n2:"تطبيقات التوصيل تأخذ عمولتها الخاصة على كل طلب.",n3:"القيم بالريال البرازيلي (R$).",
     b_pick:"اختر المبلغ الشهري المناسب لميزانيتك",per_store:"R$ 350 لكل متجر",cafe_t:"لنشرب قهوة معًا، دون أي التزام",cafe_p:"إن كانت لديكم أسئلة وتريدون فهم كل عملية بشكل أفضل، نأتي إلى متجركم ونتحدث وجهًا لوجه.",b_month:"يُدفع كل شهر",mf1:"Google Ads",mf2:"Meta Ads",mf3:"إنشاء المحتوى (التصاميم)",mf4:"تقارير شهرية",dl_eye:"إضافة اختيارية",dl_t:"تطبيقات التوصيل",dl_p:"إضافات اختيارية لبيع أكثر على تطبيقات التوصيل. تُدفع مرة واحدة.",dk:"ننسخ قائمة iFood إلى هذا التطبيق.",ma_t:"تحليل القائمة الإلكترونية",ma_d:"اقتراحات وإعادة تموضع للمنتجات لزيادة التفاعل، ومراجعة أوصاف المنتجات، وضبط المتجر (SEO) لتظهر أعلى في البحث عبر الإنترنت.",ma_chip:"حتى 100 منتج",next:"الخطوة التالية: أخبرونا بالوحدات التي تريدونها ونبدأ.",
     d_eye:"الاستراتيجية والإبداع",d_h2:"الحمض النووي لـ The Ocean Blue",
@@ -532,7 +535,7 @@ html[dir=rtl] body,html[dir=rtl] h1,html[dir=rtl] h2,html[dir=rtl] h3,html[dir=r
     m2:"Verba de anúncios",m2d:"Valor investido nos anúncios do Google e Meta. Pago direto às plataformas.",
     m3:"iFood pronto para vender",m3d:"Configuramos a loja, alinhamos o cardápio e deixamos rodando. Só se você ainda não tiver.",
     m4:"99Food + Keeta",m4d:"Replicamos o cardápio do iFood em cada app que você escolher.",
-    per_m:"por mês",per_o:"uma vez",t_m:"Todo mês",t_o:"Uma vez",none:"Nada selecionado",
+    mp_first:"por mês, nos 3 primeiros meses",mp_then:"Preço de boas-vindas. Depois, R$ 1.497 por mês.",t_m3:"Nos 3 primeiros meses, todo mês",t_after:"A partir do 4º mês:",per_m:"por mês",per_o:"uma vez",t_m:"Todo mês",t_o:"Uma vez",none:"Nada selecionado",
     n1:"A verba vai para o Google e a Meta, não para a The Ocean Blue.",n2:"Os apps de entrega cobram comissão própria sobre cada pedido.",n3:"Valores em reais (R$).",
     b_pick:"Escolha o valor mensal que cabe na sua verba",per_store:"R$ 350 por loja",cafe_t:"Vamos tomar um café, sem compromisso",cafe_p:"Se tiver dúvidas e quiser entender melhor cada um dos processos, nós vamos até o seu estabelecimento e conversamos pessoalmente.",b_month:"Pago todo mês",mf1:"Google Ads",mf2:"Meta Ads",mf3:"Criação de conteúdo (criativos)",mf4:"Relatórios mensais",dl_eye:"Extra opcional",dl_t:"Apps de entrega",dl_p:"Extras opcionais para vender mais nos apps de entrega. Pagos uma vez.",dk:"Replicamos o cardápio do iFood neste app.",ma_t:"Análise de cardápio online",ma_d:"Sugestões e reposicionamento de produtos para mais engajamento, revisão dos descritivos de produtos e configuração da loja (SEO) para aparecer mais nas buscas online.",ma_chip:"Análise de até 100 produtos",next:"Próximo passo: diga quais módulos você quer e começamos.",
     d_eye:"Estratégia e criação",d_h2:"DNA The Ocean Blue",
@@ -569,7 +572,7 @@ html[dir=rtl] body,html[dir=rtl] h1,html[dir=rtl] h2,html[dir=rtl] h3,html[dir=r
     m2:"Reklam bütçesi",m2d:"Google ve Meta reklamlarına harcanan tutar. Doğrudan platformlara ödenir.",
     m3:"iFood, satışa hazır",m3d:"Mağaza kurulumu, menü düzenlemesi ve işleyişe alma. Yalnızca henüz yoksa.",
     m4:"99Food + Keeta",m4d:"iFood menüsünü seçtiğiniz her uygulamaya kopyalıyoruz.",
-    per_m:"aylık",per_o:"tek seferlik",t_m:"Her ay",t_o:"Tek seferlik",none:"Seçim yok",
+    mp_first:"aylık, ilk 3 ay",mp_then:"Hoş geldin fiyatı. Sonrasında aylık R$ 1.497.",t_m3:"İlk 3 ay, her ay",t_after:"4. aydan itibaren:",per_m:"aylık",per_o:"tek seferlik",t_m:"Her ay",t_o:"Tek seferlik",none:"Seçim yok",
     n1:"Reklam bütçesi Google ve Meta'ya gider, The Ocean Blue'ya değil.",n2:"Teslimat uygulamaları her siparişten kendi komisyonunu alır.",n3:"Tutarlar Brezilya reali (R$) cinsindendir.",
     b_pick:"Bütçenize uygun aylık tutarı seçin",per_store:"Mağaza başına R$ 350",cafe_t:"Bir kahve içelim, taahhüt yok",cafe_p:"Sorularınız varsa ve her süreci daha iyi anlamak isterseniz, işletmenize gelip yüz yüze konuşuruz.",b_month:"Her ay ödenir",mf1:"Google Ads",mf2:"Meta Ads",mf3:"İçerik üretimi (kreatifler)",mf4:"Aylık raporlar",dl_eye:"İsteğe bağlı ekstra",dl_t:"Teslimat uygulamaları",dl_p:"Teslimat uygulamalarında daha fazla satmak için isteğe bağlı ekstralar. Tek seferlik ödeme.",dk:"iFood menüsünü bu uygulamaya kopyalıyoruz.",ma_t:"Çevrimiçi menü analizi",ma_d:"Daha fazla etkileşim için öneriler ve ürün yeniden konumlandırma, ürün açıklamalarının gözden geçirilmesi ve çevrimiçi aramalarda daha üst sıralarda çıkmak için mağaza kurulumu (SEO).",ma_chip:"100 ürüne kadar analiz",next:"Sonraki adım: hangi modülleri istediğinizi söyleyin, başlayalım.",
     d_eye:"Strateji ve yaratıcılık",d_h2:"The Ocean Blue DNA",
@@ -623,14 +626,16 @@ html[dir=rtl] body,html[dir=rtl] h1,html[dir=rtl] h2,html[dir=rtl] h3,html[dir=r
   var sws=[].slice.call(document.querySelectorAll("#end [role=switch]"));
   var bval=600,bsw=document.getElementById("bsw"),bcard=document.getElementById("budgetcard");
   function calc(){
-    var m=0,o=0,mn=[],on=[];
+    var m=0,o=0,mn=[],on=[],ex=0;
     sws.forEach(function(b){
       if(b===bsw||b.getAttribute("aria-checked")!=="true")return;
       var v=+b.dataset.price,n=b.dataset.n?t(b.dataset.n):b.querySelector(".hn").textContent;
-      if(b.dataset.kind==="month"){m+=v;mn.push(n)}else{o+=v;on.push(n)}
+      if(b.dataset.kind==="month"){m+=v;mn.push(n);if(b.dataset.after)ex+=(+b.dataset.after)-v}else{o+=v;on.push(n)}
     });
     if(bsw.getAttribute("aria-checked")==="true"){m+=bval;mn.push(t("m2"))}
     document.getElementById("tm").textContent=money(m);
+    var ta=document.getElementById("tafter");ta.hidden=(ex===0);ta.textContent=t("t_after")+" "+money(m+ex)+" "+t("per_m");
+    document.getElementById("tk").textContent=t(ex?"t_m3":"t_m");
     document.getElementById("to").textContent=money(o);
     document.getElementById("dbar").hidden=(on.length===0);
     document.getElementById("tms").textContent=mn.length?mn.join(" + "):t("none");
