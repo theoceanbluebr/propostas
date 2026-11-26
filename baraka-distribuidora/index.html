@@ -168,6 +168,24 @@ section.soft{background:linear-gradient(180deg,#FFF3DB,#FFFAF0)}
 .cafe h3{font-size:clamp(1.9rem,5vw,3.2rem);font-weight:800}
 .cafe p{margin:12px 0 0;color:#F0E2C8;font-size:clamp(1.05rem,2vw,1.3rem);max-width:56ch}
 @media(max-width:560px){.cafe{grid-template-columns:1fr}}
+
+.bdg{grid-column:1/-1;justify-self:start;font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:5px 12px;border-radius:999px;background:#E4F3D4;color:#3C6B16}
+.feats{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:8px}
+.feats span{background:#FFF1D6;border-radius:999px;padding:6px 14px;font-size:.88rem;font-weight:700;color:#6B4311}
+.delivery{margin-top:34px;border-radius:30px;padding:clamp(18px,3vw,28px);background:#FFF3DB;border:1.5px dashed #E3C98E}
+.dhead h3{font-size:1.6rem;margin-top:8px}
+.dhead p{margin:6px 0 0;color:var(--mute);font-size:.95rem}
+.dgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:16px}
+@media(max-width:800px){.dgrid{grid-template-columns:1fr}}
+.dcard{all:unset;box-sizing:border-box;cursor:pointer;background:#fff;border-radius:22px;padding:16px 18px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 10px;align-items:center;border:2px solid transparent;transition:border-color .25s,background .25s}
+.dcard:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.dcard[aria-checked="true"]{border-color:var(--green);background:#F1F9E6}
+.dcard .hn{font-family:"Outfit";font-weight:700;font-size:1.3rem}
+.dcard .dd{grid-column:1/-1;color:var(--mute);font-size:.88rem;line-height:1.4}
+.dcard .dp{grid-column:1/-1;font-family:"Outfit";font-weight:800;font-size:1.6rem;line-height:1;color:var(--brown)}
+.dcard .dp small{font-family:"Plus Jakarta Sans";font-weight:600;font-size:.78rem;color:var(--mute);margin-left:6px}
+.dcard[aria-checked="true"] .sw{background:var(--green)}
+.dcard[aria-checked="true"] .sw::after{transform:translateX(24px)}
 .total{position:sticky;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:5;margin-top:22px;border-radius:30px;padding:clamp(18px,3vw,28px) clamp(20px,4vw,38px);color:#fff;background:linear-gradient(120deg,rgba(42,23,7,.96),rgba(62,40,16,.96));backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 30px 60px -24px rgba(42,23,7,.7);display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 28px}
 @media(max-width:560px){.total{gap:10px 14px}}
 .total .k{font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:700}
@@ -323,9 +341,15 @@ footer.ob a{color:#fff;font-weight:700;text-decoration:none;border-bottom:1px so
   </div>
 
   <div class="mods rv" id="mods">
-    <button class="mod" type="button" role="switch" aria-checked="true" data-price="997" data-kind="month" data-n="m1"><span><h3 data-i="m1"></h3></span><span class="sw"></span><p data-i="m1d"></p><span class="price">R$ 997<small data-i="per_m"></small></span></button>
+    <button class="mod" type="button" role="switch" aria-checked="true" data-price="997" data-kind="month" data-n="m1">
+      <span class="bdg" data-i="b_month"></span>
+      <span><h3 data-i="m1"></h3></span><span class="sw"></span>
+      <span class="feats"><span data-i="mf1"></span><span data-i="mf2"></span><span data-i="mf3"></span><span data-i="mf4"></span></span>
+      <span class="price">R$ 997<small data-i="per_m"></small></span>
+    </button>
 
     <div class="mod c2 on" id="budgetcard">
+      <span class="bdg" data-i="b_month"></span>
       <div class="mh"><h3 data-i="m2"></h3><button class="swb" type="button" role="switch" aria-checked="true" id="bsw" aria-label="Ad budget"><span class="sw"></span></button></div>
       <p data-i="m2d"></p>
       <div class="pickl" data-i="b_pick"></div>
@@ -336,23 +360,20 @@ footer.ob a{color:#fff;font-weight:700;text-decoration:none;border-bottom:1px so
       </div>
       <span class="price" id="bprice">R$ 600<small data-i="per_m"></small></span>
     </div>
-
-    <button class="mod" type="button" role="switch" aria-checked="true" data-price="950" data-kind="once" data-n="m3"><span><h3 data-i="m3"></h3></span><span class="sw"></span><p data-i="m3d"></p><span class="price">R$ 950<small data-i="per_o"></small></span></button>
-
-    <div class="mod c2 on">
-      <div class="mh"><h3 data-i="m4"></h3></div>
-      <p data-i="m4d"></p>
-      <div class="pickl" data-i="per_store"></div>
-      <div class="halves">
-        <button class="half" type="button" role="switch" aria-checked="true" data-price="350" data-kind="once"><span class="hn">99Food</span><span class="sw"></span><span class="hp">R$ 350<small data-i="per_o"></small></span></button>
-        <button class="half" type="button" role="switch" aria-checked="true" data-price="350" data-kind="once"><span class="hn">Keeta</span><span class="sw"></span><span class="hp">R$ 350<small data-i="per_o"></small></span></button>
-      </div>
-    </div>
   </div>
 
   <div class="total" aria-live="polite">
     <div><div class="k" data-i="t_m"></div><div class="v" id="tm">R$ 0</div><div class="s" id="tms"></div></div>
     <div><div class="k" data-i="t_o"></div><div class="v" id="to">R$ 0</div><div class="s" id="tos"></div></div>
+  </div>
+
+  <div class="delivery rv">
+    <div class="dhead"><span class="eyebrow" data-i="dl_eye"></span><h3 data-i="dl_t"></h3><p data-i="dl_p"></p></div>
+    <div class="dgrid">
+      <button class="dcard" type="button" role="switch" aria-checked="false" data-price="950" data-kind="once"><span class="hn">iFood</span><span class="sw"></span><span class="dd" data-i="m3d"></span><span class="dp">R$ 950<small data-i="per_o"></small></span></button>
+      <button class="dcard" type="button" role="switch" aria-checked="false" data-price="350" data-kind="once"><span class="hn">99Food</span><span class="sw"></span><span class="dd" data-i="dk"></span><span class="dp">R$ 350<small data-i="per_o"></small></span></button>
+      <button class="dcard" type="button" role="switch" aria-checked="false" data-price="350" data-kind="once"><span class="hn">Keeta</span><span class="sw"></span><span class="dd" data-i="dk"></span><span class="dp">R$ 350<small data-i="per_o"></small></span></button>
+    </div>
   </div>
 
   <ul class="notes">
@@ -416,7 +437,7 @@ footer.ob a{color:#fff;font-weight:700;text-decoration:none;border-bottom:1px so
     m4:"99Food + Keeta",m4d:"Copy the iFood menu to each app you choose.",
     per_m:"per month",per_o:"one time",t_m:"Every month",t_o:"One time",none:"Nothing selected",
     n1:"The ad budget goes to Google and Meta, not to The Ocean Blue.",n2:"Delivery apps charge their own commission on each order.",n3:"Values in Brazilian reais (R$).",
-    b_pick:"Pick the monthly amount that fits your budget",per_store:"R$ 350 per store",cafe_t:"Let's have a coffee, no commitment",cafe_p:"If you have questions and want to understand each process better, we come to your store and talk in person.",next:"Next step: tell us which modules you want and we start.",
+    b_pick:"Pick the monthly amount that fits your budget",per_store:"R$ 350 per store",cafe_t:"Let's have a coffee, no commitment",cafe_p:"If you have questions and want to understand each process better, we come to your store and talk in person.",b_month:"Paid every month",mf1:"Google Ads",mf2:"Meta Ads",mf3:"Content creation (creatives)",mf4:"Monthly reports",dl_eye:"Optional extra",dl_t:"Delivery apps",dl_p:"A new sales channel. Paid once, per app.",dk:"Copy the iFood menu to this app.",next:"Next step: tell us which modules you want and we start.",
     d_eye:"Strategy and creation",d_h2:"The Ocean Blue DNA",
     d_tx:"This analysis follows the geomarketing method that is part of our background, crossing public data on population, income and movement to understand where and how consumption happens. This is The Ocean Blue way of working: combining the reading of territory and consumer behavior with creation that turns that reading into images, video and content people want to see and share.",
     d_p1:"Market intelligence",d_p1d:"Geomarketing method from our work on expansion studies for large chains.",
@@ -453,7 +474,7 @@ footer.ob a{color:#fff;font-weight:700;text-decoration:none;border-bottom:1px so
     m4:"99Food + Keeta",m4d:"Replicamos o cardápio do iFood em cada app que você escolher.",
     per_m:"por mês",per_o:"uma vez",t_m:"Todo mês",t_o:"Uma vez",none:"Nada selecionado",
     n1:"A verba vai para o Google e a Meta, não para a The Ocean Blue.",n2:"Os apps de entrega cobram comissão própria sobre cada pedido.",n3:"Valores em reais (R$).",
-    b_pick:"Escolha o valor mensal que cabe na sua verba",per_store:"R$ 350 por loja",cafe_t:"Vamos tomar um café, sem compromisso",cafe_p:"Se tiver dúvidas e quiser entender melhor cada um dos processos, nós vamos até o seu estabelecimento e conversamos pessoalmente.",next:"Próximo passo: diga quais módulos você quer e começamos.",
+    b_pick:"Escolha o valor mensal que cabe na sua verba",per_store:"R$ 350 por loja",cafe_t:"Vamos tomar um café, sem compromisso",cafe_p:"Se tiver dúvidas e quiser entender melhor cada um dos processos, nós vamos até o seu estabelecimento e conversamos pessoalmente.",b_month:"Pago todo mês",mf1:"Google Ads",mf2:"Meta Ads",mf3:"Criação de conteúdo (criativos)",mf4:"Relatórios mensais",dl_eye:"Extra opcional",dl_t:"Apps de entrega",dl_p:"Um novo canal de vendas. Pago uma vez, por app.",dk:"Replicamos o cardápio do iFood neste app.",next:"Próximo passo: diga quais módulos você quer e começamos.",
     d_eye:"Estratégia e criação",d_h2:"DNA The Ocean Blue",
     d_tx:"Esta análise segue a metodologia de geomarketing que faz parte da nossa trajetória, cruzando dados públicos de população, renda e deslocamento para entender onde e como o consumo acontece. Esse é o jeito The Ocean Blue de trabalhar: unir a leitura do território e do comportamento do consumidor à criação que transforma essa leitura em imagem, vídeo e conteúdo que o cliente quer ver e compartilhar.",
     d_p1:"Inteligência de mercado",d_p1d:"Metodologia de geomarketing da nossa trajetória em estudos de expansão para grandes redes.",
@@ -490,7 +511,7 @@ footer.ob a{color:#fff;font-weight:700;text-decoration:none;border-bottom:1px so
     m4:"99Food + Keeta",m4d:"iFood menüsünü seçtiğiniz her uygulamaya kopyalıyoruz.",
     per_m:"aylık",per_o:"tek seferlik",t_m:"Her ay",t_o:"Tek seferlik",none:"Seçim yok",
     n1:"Reklam bütçesi Google ve Meta'ya gider, The Ocean Blue'ya değil.",n2:"Teslimat uygulamaları her siparişten kendi komisyonunu alır.",n3:"Tutarlar Brezilya reali (R$) cinsindendir.",
-    b_pick:"Bütçenize uygun aylık tutarı seçin",per_store:"Mağaza başına R$ 350",cafe_t:"Bir kahve içelim, taahhüt yok",cafe_p:"Sorularınız varsa ve her süreci daha iyi anlamak isterseniz, işletmenize gelip yüz yüze konuşuruz.",next:"Sonraki adım: hangi modülleri istediğinizi söyleyin, başlayalım.",
+    b_pick:"Bütçenize uygun aylık tutarı seçin",per_store:"Mağaza başına R$ 350",cafe_t:"Bir kahve içelim, taahhüt yok",cafe_p:"Sorularınız varsa ve her süreci daha iyi anlamak isterseniz, işletmenize gelip yüz yüze konuşuruz.",b_month:"Her ay ödenir",mf1:"Google Ads",mf2:"Meta Ads",mf3:"İçerik üretimi (kreatifler)",mf4:"Aylık raporlar",dl_eye:"İsteğe bağlı ekstra",dl_t:"Teslimat uygulamaları",dl_p:"Yeni bir satış kanalı. Uygulama başına tek seferlik ödeme.",dk:"iFood menüsünü bu uygulamaya kopyalıyoruz.",next:"Sonraki adım: hangi modülleri istediğinizi söyleyin, başlayalım.",
     d_eye:"Strateji ve yaratıcılık",d_h2:"The Ocean Blue DNA",
     d_tx:"Bu analiz, yolculuğumuzun bir parçası olan geomarketing (coğrafi pazarlama) yöntemini izler; tüketimin nerede ve nasıl gerçekleştiğini anlamak için nüfus, gelir ve hareketlilik verilerini çaprazlar. The Ocean Blue'nun çalışma biçimi budur: bölge ve tüketici davranışı okumasını, bu okumayı müşterinin görmek ve paylaşmak isteyeceği görsele, videoya ve içeriğe dönüştüren yaratıcılıkla birleştirmek.",
     d_p1:"Pazar istihbaratı",d_p1d:"Büyük zincirler için yaptığımız genişleme çalışmalarından gelen geomarketing yöntemi.",
@@ -539,7 +560,7 @@ footer.ob a{color:#fff;font-weight:700;text-decoration:none;border-bottom:1px so
       ol.appendChild(li);
     });
   }
-  var sws=[].slice.call(document.querySelectorAll("#mods [role=switch]"));
+  var sws=[].slice.call(document.querySelectorAll("#end [role=switch]"));
   var bval=600,bsw=document.getElementById("bsw"),bcard=document.getElementById("budgetcard");
   function calc(){
     var m=0,o=0,mn=[],on=[];
